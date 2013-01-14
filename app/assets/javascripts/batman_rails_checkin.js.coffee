@@ -12,7 +12,7 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   Batman.ViewStore.prefix = 'assets/views'
 
   @navLinks: [
-    {href: "/#!/checkins/", controller: "checkins", text: "Checkins"},
+    {href: "/checkins/", controller: "checkins", text: "Checkins"},
   ]
 
   @resources 'checkins'
@@ -21,7 +21,12 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   @root 'main#index'
 
   @on 'run', ->
-    console?.log "Running ...."
+    user = new BatmanRailsCheckin.User()
+    user.url = '/users/current'
+    user.load (err, user) =>
+      #throw err if err
+      console.log 'set'
+      @set 'currentUser', user if user and user.get('id')?
 
   @on 'ready', ->
     console?.log "BatmanRailsCheckin ready for use."
