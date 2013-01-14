@@ -12,9 +12,15 @@
         .container
           %a.brand{:href => '/'}
             CRUD
-          %ul.nav
-            %li{:data => {"foreach-nav" => "window.BatmanRailsCheckin.navLinks", "addclass-active" => "window.BatmanRailsCheckin.currentRoute.controller | matches nav.controller"}}
+          %ul.nav{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
+            %li{:data => {"foreach-nav" => "window.BatmanRailsCheckin.navLinks", |
+                "addclass-active" => "window.BatmanRailsCheckin.currentRoute.controller | matches nav.controller"}}
               %a{:data => {"bind" => "nav.text", "bind-href" => "nav.href"}}
+
+          %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
+            %li
+              %a{:data => {bind: "window.BatmanRailsCheckin.currentUser.email | prepend 'logout '", |
+                          "route" => "routes.logout"}}
     #main.container
       .content
         %p#flashnotice.alert.alert-success{:data => {"showif" => "window.BatmanRailsCheckin.flash.success.length"}}

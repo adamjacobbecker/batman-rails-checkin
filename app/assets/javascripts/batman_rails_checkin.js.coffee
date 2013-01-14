@@ -1,5 +1,8 @@
-window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
+Batman.config =
+  pathPrefix: '/'
+  usePushState: true
 
+window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   # @root 'controller#all'
   # @route '/controller/:id', 'controller#show', resource: 'model', action: 'show'
 
@@ -13,7 +16,9 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   ]
 
   @resources 'checkins'
-  @root 'checkins'
+  @route '/login', 'main#login'
+  @route '/logout', 'main#logout'
+  @root 'main#index'
 
   @on 'run', ->
     console?.log "Running ...."

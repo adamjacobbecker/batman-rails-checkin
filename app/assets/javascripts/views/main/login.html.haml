@@ -1,0 +1,12 @@
+%h3 Login to Batman Rails Checkin
+
+%form#edit_checkin.edit_checkin{"accept-charset" => "UTF-8", "data-event-submit" => "sendLogin", "data-formfor-user" => "loginUser"}
+  %fieldset
+    %label{:for => "user_email"} Email
+    %input{type: "text", "data-bind" => "user.email", :name => "user[email]"}
+
+    %label{:for => "user_password"} Password
+    %input{type: "password", "data-bind" => "user.password", :name => "user[password]"}
+
+  .actions
+    %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Login or Sign Up"}

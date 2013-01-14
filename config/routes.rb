@@ -12,6 +12,11 @@ BatmanRailsCheckin::Application.routes.draw do
   end
 
   resources :checkins, :except => :edit, :constraints => FormatTest.new(:json)
+
+  resources :users, :except => [:edit, :index], :constraints => FormatTest.new(:json) do
+    get 'current', on: :collection
+  end
+
   get '/*foo', :to => 'main#index', :constraints => FormatTest.new(:html)
   get '/', :to => 'main#index', :constraints => FormatTest.new(:html)
 
