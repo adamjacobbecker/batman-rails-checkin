@@ -1,0 +1,6 @@
+.well
+  %h2
+    %a{"data-bind" => "checkin.date", "data-route" => "routes.checkins[checkin]"}
+  %p{"data-bind" => "checkin.body"}
+  %p.details-link
+    %a.btn{"data-route" => "routes.checkins[checkin]"} View details »

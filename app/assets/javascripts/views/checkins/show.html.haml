@@ -1,0 +1,8 @@
+.page-header
+  %h1{"data-bind" => "checkin.date"}
+.hero-c
+  %p{"data-bind" => "checkin.body"}
+.well
+  %a.btn.btn-primary{"data-route" => 'routes.checkins[checkin].edit'}Edit
+  %a.btn{'data-route' => 'routes.checkins'}Back
+  %a.btn.destroy.btn-danger{"data-event-click" => 'destroy'} Destroy

@@ -1,0 +1,20 @@
+%fieldset
+  %legend
+    %span{"data-hideif" => "checkin.id"} New Checkin
+    %span{"data-showif" => "checkin.id"} Edit Checkin
+  #error-explanation.alert-message.block-message.error{"data-showif" => "checkin.errors.length"}
+    %p
+      %strong
+        %span{"data-bind" => "checkin.errors.length"}
+        %span{"data-bind" => "'error' | pluralize checkin.errors.length"}
+        prevented this checkin from being created:
+    %ul
+      %li{"data-bind" => "error.message", "data-foreach-error" => "checkin.errors"}
+%fieldset
+  .clearfix{"data-addclass-error" => 'checkin.errors.body.length'}
+    %label{:for => "checkin_body"} Body
+    .input
+      %textarea#post_content.span8{:cols => "40", "data-bind" => "checkin.body", :name => "checkin[body]", :rows => "20"}
+.actions
+  %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Submit"}
+    %a.btn{'data-route' => 'checkin'} Cancel

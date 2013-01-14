@@ -21,10 +21,12 @@ group :production do
 end
 
 group :assets do
+  gem 'jquery-rails'
   gem 'stylus'
   gem 'coffee-rails'
   gem 'twitter-bootstrap-rails'
-  gem 'haml'
+  gem 'haml-rails'
+  gem 'haml_assets'
   gem 'handlebars_assets'
 end
 
