@@ -1,5 +1,6 @@
-Batman.config.pathPrefix = '/'
-Batman.config.usePushState = true
+Batman.config =
+  pathPrefix: '/'
+  usePushState: true
 
 window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
@@ -8,16 +9,16 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   # 0.8.0 changed to this syntax
   Batman.ViewStore.prefix = 'assets/views'
 
-  @navLinks: [
-    {href: "/checkins/", controller: "checkins", text: "Checkins"},
-  ]
-
+  @root 'main#index'
   @resources 'checkins'
   @route '/login', 'main#login'
   @route '/logout', 'main#logout'
-  @root 'main#index'
 
-  # @on 'run', ->
+  @navLinks: [
+    {route: @get('routes.checkins'), controller: "checkins", text: "Checkins"},
+  ]
+
+  @on 'run', ->
 
   @on 'ready', ->
     console?.log "BatmanRailsCheckin ready for use."

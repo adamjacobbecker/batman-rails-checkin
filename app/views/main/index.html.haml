@@ -12,10 +12,10 @@
         .container
           %a.brand{:href => '/'}
             CRUD
-          %ul.nav{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
+          %ul.nav
             %li{:data => {"foreach-nav" => "window.BatmanRailsCheckin.navLinks", |
                 "addclass-active" => "window.BatmanRailsCheckin.currentRoute.controller | matches nav.controller"}}
-              %a{:data => {"bind" => "nav.text", "bind-href" => "nav.href"}}
+              %a{:data => {"bind" => "nav.text", "route" => "nav.route"}}
 
           %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li
