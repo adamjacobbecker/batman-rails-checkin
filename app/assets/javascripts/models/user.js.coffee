@@ -5,7 +5,7 @@ class BatmanRailsCheckin.User extends Batman.Model
   @persist Batman.RailsStorage
 
   # fields
-  @encode "email", "password"
+  @encode "email", "password", "latest_checkin"
 
   # validations
   @validate "email", presence: true

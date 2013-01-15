@@ -13,7 +13,7 @@ BatmanRailsCheckin::Application.routes.draw do
 
   resources :checkins, :except => :edit, :constraints => FormatTest.new(:json)
 
-  resources :users, :except => [:edit, :index], :constraints => FormatTest.new(:json) do
+  resources :users, :except => [:edit], :constraints => FormatTest.new(:json) do
     get 'current', on: :collection
   end
 

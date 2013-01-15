@@ -3,6 +3,7 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
 
   index: (params) ->
     @authenticate =>
+      @set 'users', BatmanRailsCheckin.User.get('all')
       @render()
 
   login: (params) ->

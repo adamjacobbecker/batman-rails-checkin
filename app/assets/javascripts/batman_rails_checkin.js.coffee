@@ -1,6 +1,5 @@
-Batman.config =
-  pathPrefix: '/'
-  usePushState: true
+Batman.config.pathPrefix = '/'
+Batman.config.usePushState = true
 
 window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   # @root 'controller#all'

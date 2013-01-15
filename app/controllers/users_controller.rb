@@ -7,6 +7,10 @@ class UsersController < ActionController::Base
     end
   end
 
+  def index
+    render json: User.all
+  end
+
   # used for logging in *and* account creation
   def create
     user = User.find_by_email(params[:user][:email].downcase)

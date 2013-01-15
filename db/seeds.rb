@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-10.times do |i|
-  Checkin.create body: "This is my checkin ##{i}."
+
+User.create(email: "ad@mbecker.cc", password: "password")
+User.create(email: "foo@bar.com", password: "foobar")
+
+User.all.each do |u|
+  10.times do |i|
+    u.checkins.create body: "This is my checkin ##{i}."
+  end
 end
