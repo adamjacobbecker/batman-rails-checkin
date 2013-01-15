@@ -2,7 +2,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
   routingKey: 'checkins'
 
   index: (params) ->
-    @authenticate =>
+    @authenticated =>
       BatmanRailsCheckin.Checkin.load (err, results) =>
         @set 'checkins', results
         @render()

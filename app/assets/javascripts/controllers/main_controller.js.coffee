@@ -2,12 +2,14 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
   routingKey: 'main'
 
   index: (params) ->
-    @authenticate =>
+    @authenticated =>
       @set 'users', BatmanRailsCheckin.User.get('all')
       @render()
 
   login: (params) ->
-    @set('loginUser', new BatmanRailsCheckin.User())
+    @notAuthenticated =>
+      @set('loginUser', new BatmanRailsCheckin.User())
+      @render()
 
   sendLogin: (params) ->
     @get('loginUser').save (err, user) =>
