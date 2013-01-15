@@ -1,10 +1,9 @@
 class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseController
   routingKey: 'main'
 
-  @beforeFilter except: ['login'], 'authenticate'
-
   index: (params) ->
-    @render(false)
+    @authenticate =>
+      @render()
 
   login: (params) ->
     @set('loginUser', new BatmanRailsCheckin.User())

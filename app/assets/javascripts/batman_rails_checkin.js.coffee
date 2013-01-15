@@ -20,13 +20,7 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   @route '/logout', 'main#logout'
   @root 'main#index'
 
-  @on 'run', ->
-    user = new BatmanRailsCheckin.User()
-    user.url = '/users/current'
-    user.load (err, user) =>
-      #throw err if err
-      console.log 'set'
-      @set 'currentUser', user if user and user.get('id')?
+  # @on 'run', ->
 
   @on 'ready', ->
     console?.log "BatmanRailsCheckin ready for use."
