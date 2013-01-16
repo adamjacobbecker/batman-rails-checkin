@@ -14,9 +14,11 @@ class DaysController < ApplicationController
   end
 
   def show
-    date = params[:date]
-
-    date = Date.current if date == "today"
+    if params[:date] == "today"
+      date = Date.current
+    else
+      date = Date.parse(params[:date])
+    end
 
     day = {
       date: date,
@@ -30,6 +32,8 @@ class DaysController < ApplicationController
   private
 
   def prettify_date(date)
+    logger.info date == Date.yesterday
+    logger.info Date.yesterday
     if date == Date.current
       "Today"
     elsif date == Date.yesterday

@@ -1,6 +1,9 @@
 .row-fluid
-  .span3
+  .span3.sidebar-nav-fixed
     %div{"data-partial" => "main/_sidebar"}
 
-  .span9
-    %h4 Recent Checkins
+  .span9.fixed-sidebar
+    %h4 &nbsp;
+
+    %checkins
+      %div{"data-foreach-checkin" => "checkins", "data-partial" => "checkins/_checkin"}
