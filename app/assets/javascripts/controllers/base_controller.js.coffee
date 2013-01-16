@@ -1,5 +1,10 @@
 class BatmanRailsCheckin.BaseController extends Batman.Controller
 
+  @beforeFilter 'clearPageTitle'
+
+  clearPageTitle: ->
+    BatmanRailsCheckin.set 'pageTitle', undefined
+
   authenticated: (cb) ->
     return cb() if BatmanRailsCheckin.currentUser
 

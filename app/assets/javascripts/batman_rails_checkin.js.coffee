@@ -36,3 +36,13 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   @flashSuccess: (message) -> @set 'flash.success', message
   @flashError: (message) ->  @set 'flash.error', message
+
+  @classAccessor 'pageTitle'
+    get: (k) ->
+      if @[k]? and @[k] isnt ''
+        "#{@[k]} | #{@title}"
+      else
+        @title
+
+    set: (k, v) ->
+      @[k] = v
