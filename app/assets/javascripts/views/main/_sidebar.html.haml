@@ -7,12 +7,12 @@
         %span.badge.badge-inverse{"data-bind" => "day.checkin_count"}
       %span{"data-bind" => "day.date_pretty"}
 
-%h4 Users
+%h4 Checkins by User
 %ul.nav.nav-list.nav-list-bordered.user-list
   %li{"data-foreach-user" => "users"}
     %a{"data-route" => "routes.checkins[user.latest_checkin.id]"}
       %i.icon-chevron-right.view-icon
       %img{"data-bind-src" => "user.gravatar_url"}
-      %span.email{"data-bind" => "user.email"}
+      %span.email{"data-bind" => "user.name"}
       %span.checkin{"data-bind" => "user.latest_checkin.body | truncate '25'"}
       .clearfix

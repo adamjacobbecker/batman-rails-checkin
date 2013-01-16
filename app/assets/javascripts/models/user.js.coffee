@@ -1,6 +1,7 @@
 class BatmanRailsCheckin.User extends Batman.Model
   @hasMany 'checkins',
     autoload: false
+    saveInline: false
 
   @resourceName: 'user'
   @storageKey: 'users'
@@ -8,7 +9,7 @@ class BatmanRailsCheckin.User extends Batman.Model
   @persist Batman.RailsStorage
 
   # fields
-  @encode "email", "password", "gravatar_url", "latest_checkin"
+  @encode "email", "name", "password", "gravatar_url", "latest_checkin"
 
   # validations
   @validate "email", presence: true

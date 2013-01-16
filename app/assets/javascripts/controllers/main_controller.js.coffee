@@ -26,7 +26,7 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
         if user.get('id')?
           BatmanRailsCheckin.set 'currentUser', user
           BatmanRailsCheckin.flashSuccess "Logged in!"
-          @redirect '/checkins'
+          @redirect '/'
         else
           @set('loginUser', new BatmanRailsCheckin.User())
           BatmanRailsCheckin.flashError "Problem logging in."

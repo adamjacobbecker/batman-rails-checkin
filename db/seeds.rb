@@ -6,12 +6,22 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'ffaker'
 
-User.create(email: "ad@mbecker.cc", password: "password")
-User.create(email: "foo@bar.com", password: "foobar")
+User.create(name: "Adam Becker", email: "ad@mbecker.cc", password: "password")
+User.create(name: "Tobias Funke", email: "tobias@gobiasindustries.com", password: "password")
+User.create(name: "Michael Bluth", email: "michael@bluthco.com", password: "password")
 
-User.all.each do |u|
-  10.times do |i|
-    u.checkins.create body: "This is my checkin ##{i}."
+User.all.each do |user|
+
+  date = Date.current
+
+  10.times do
+    break if rand(1..5) == 1
+    checkin = user.checkins.build body: Faker::Lorem.sentence
+    checkin.created_at = date.to_time
+    checkin.save
+    date = date - 1.day
   end
+
 end

@@ -1,5 +1,3 @@
-class UserListSerializer < ActiveModel::Serializer
-  attributes :id, :email, :gravatar_url
-
+class UserListSerializer < UserSerializer
   has_one :latest_checkin
 end

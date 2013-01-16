@@ -1,3 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :gravatar_url
+  attributes :id, :email, :name, :gravatar_url
 end
