@@ -10,6 +10,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
     @authenticated =>
       @set 'users', BatmanRailsCheckin.User.get('all')
       @set 'days', BatmanRailsCheckin.Day.get('all')
+      @set 'dontDisplayCheckinDates', true
 
       BatmanRailsCheckin.Day.find params.date || 'today', (err, day) =>
         @set 'currentDay', day.get('date')

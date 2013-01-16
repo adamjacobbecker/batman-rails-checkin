@@ -10,7 +10,7 @@ class BatmanRailsCheckin.Day extends Batman.Model
   @persist Batman.RailsStorage
 
   # fields
-  @encode "date", "checkin_count", "date_pretty"
+  @encode "date", "checkin_count", "date_pretty", "date_slashes"
 
   @accessor 'route', ->
     if @get('date_pretty') is "Today"

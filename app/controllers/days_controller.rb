@@ -5,7 +5,12 @@ class DaysController < ApplicationController
     date = Date.current
 
     7.times do
-      day = {date: date, checkin_count: Checkin.for_date(date).count, date_pretty: prettify_date(date)}
+      day = {
+        date: date,
+        checkin_count: Checkin.for_date(date).count,
+        date_pretty: prettify_date(date),
+        date_slashes: prettify_date(date, true)
+      }
       days.push day
       date = date - 1.day
     end
@@ -23,6 +28,7 @@ class DaysController < ApplicationController
     day = {
       date: date,
       date_pretty: prettify_date(date),
+      date_slashes: prettify_date(date, true),
       checkins: ActiveModel::ArraySerializer.new(Checkin.for_date(date))
     }
 
@@ -31,12 +37,10 @@ class DaysController < ApplicationController
 
   private
 
-  def prettify_date(date)
-    logger.info date == Date.yesterday
-    logger.info Date.yesterday
-    if date == Date.current
+  def prettify_date(date, force_slashes = false)
+    if !force_slashes && date == Date.current
       "Today"
-    elsif date == Date.yesterday
+    elsif !force_slashes && date == Date.yesterday
       "Yesterday"
     else
       date.to_time.strftime("%-m/%-d/%y")

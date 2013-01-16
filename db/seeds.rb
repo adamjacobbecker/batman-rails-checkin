@@ -9,17 +9,17 @@
 require 'ffaker'
 
 checkin_body = <<END
-##Get Done
+#### Get Done
 repair banana stand
 find company checkbook
 
-##Got Done
+#### Got Done
 rocked karaoke with maeby
 
-##Flags
+#### Flags
 Y: refrigerator keeps falling through the wall
 
-##Shelf
+#### Shelf
 get mother into a home
 END
 

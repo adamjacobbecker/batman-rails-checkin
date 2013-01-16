@@ -6,8 +6,8 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'rails-api'
-
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'ffaker'

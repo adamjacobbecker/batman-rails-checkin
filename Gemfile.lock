@@ -116,6 +116,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
+    redcarpet (2.2.2)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -154,6 +155,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 3.2.11)
   rails-api
+  redcarpet
   sqlite3
   stylus
   twitter-bootstrap-rails

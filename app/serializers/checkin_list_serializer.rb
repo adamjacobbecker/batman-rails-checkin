@@ -1,5 +1,3 @@
-class CheckinListSerializer < ActiveModel::Serializer
-  attributes :id, :body, :date, :user_id
-
+class CheckinListSerializer < CheckinSerializer
   has_one :user
 end

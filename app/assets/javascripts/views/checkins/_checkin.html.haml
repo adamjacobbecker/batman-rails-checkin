@@ -1,6 +1,9 @@
-.well
-  %h2
-    %a{"data-bind" => "checkin.date", "data-route" => "routes.checkins[checkin]"}
-  %p{"data-bind" => "checkin.body"}
-  %p.details-link
-    %a.btn{"data-route" => "routes.checkins[checkin]"} View details »
+.well.checkin
+  .checkin-header
+    %img.gravatar{"data-bind-src" => "checkin.user.gravatar_url"}
+    %a{"data-route" => "", "data-bind" => "checkin.user.name"}
+    %span{"data-hideif" => "dontDisplayCheckinDates"}
+      on
+      %a{"data-bind" => "checkin.date_slashes", "data-route" => "checkin.dateRoute"}
+
+  %p{"data-bind" => "checkin.body_html | raw", "data-view" => "CheckinBodyView"}
