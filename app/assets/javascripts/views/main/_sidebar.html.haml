@@ -1,13 +1,17 @@
 %h4 Checkins by Date
-%ul.nav.nav-list.date-list
-  %li{"data-foreach-day" => "days"}
-    %a{"data-bind" => "day.date_pretty"}
+%ul.nav.nav-list.nav-list-bordered.day-list
+  %li{"data-foreach-day" => "days", "data-addclass-active" => "currentDay | matches day.date"}
+    %a{"data-route" => "day.route"}
+      %i.icon-chevron-right.view-icon
+      %span.badge-wrapper
+        %span.badge.badge-inverse{"data-bind" => "day.checkin_count"}
+      %span{"data-bind" => "day.date_pretty"}
 
 %h4 Users
-%ul.nav.nav-list.user-list
+%ul.nav.nav-list.nav-list-bordered.user-list
   %li{"data-foreach-user" => "users"}
     %a{"data-route" => "routes.checkins[user.latest_checkin.id]"}
-      %i.icon-chevron-right.view-user-icon
+      %i.icon-chevron-right.view-icon
       %img{"data-bind-src" => "user.gravatar_url"}
       %span.email{"data-bind" => "user.email"}
       %span.checkin{"data-bind" => "user.latest_checkin.body | truncate '25'"}

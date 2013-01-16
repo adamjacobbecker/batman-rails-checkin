@@ -8,6 +8,17 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
         @set 'checkins', results
         @render()
 
+  by_date: (params) ->
+    @authenticated =>
+      @set 'users', BatmanRailsCheckin.User.get('all')
+      @set 'checkins', BatmanRailsCheckin.Checkin.get('all')
+      @set 'days', BatmanRailsCheckin.Day.get('all')
+
+      BatmanRailsCheckin.Day.load (err, days) =>
+        @set 'currentDay', days[0].get('date')
+
+      @render()
+
   show: (params) ->
     @authenticated =>
       @set 'checkin', BatmanRailsCheckin.Checkin.find parseInt(params.id), (err, checkin) =>

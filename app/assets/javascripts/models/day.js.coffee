@@ -11,3 +11,6 @@ class BatmanRailsCheckin.Day extends Batman.Model
 
   # fields
   @encode "date", "checkin_count", "date_pretty"
+
+  @accessor 'route', ->
+    '/checkins/by_date/' + @get('date')

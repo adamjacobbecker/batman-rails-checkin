@@ -3,21 +3,16 @@
 .clearfix
   clear both
 
-ul.user-list
+ul.nav-list-bordered
   padding 0
   background-color #fff
   border-radius(6px)
-
 
   > li:first-child > a
     border-radius(6px 6px 0 0)
 
   > li:last-child > a
     border-radius(0 0 6px 6px)
-
-  > li.active > a
-    background-color #ddd
-    text-shadow none
 
   > li > a
     margin 0 0 -1px
@@ -26,7 +21,7 @@ ul.user-list
     padding 10px
     position relative
 
-    .view-user-icon
+    .view-icon
       position absolute
       top 50%
       margin-top -7px
@@ -43,3 +38,10 @@ ul.user-list
     .checkin
       display block
       color #aaa
+
+ul.day-list
+  .badge-wrapper
+    position absolute
+    right 20px
+    width 50px
+    text-align center

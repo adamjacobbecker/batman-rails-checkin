@@ -6,6 +6,10 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
       @set 'users', BatmanRailsCheckin.User.get('all')
       @set 'checkins', BatmanRailsCheckin.Checkin.get('all')
       @set 'days', BatmanRailsCheckin.Day.get('all')
+
+      BatmanRailsCheckin.Day.load (err, days) =>
+        @set 'currentDay', days[0].get('date')
+
       @render()
 
   login: (params) ->
