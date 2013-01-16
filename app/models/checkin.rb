@@ -5,4 +5,8 @@ class Checkin < ActiveRecord::Base
 
   def date=(x)
   end
+
+  def self.for_date(date)
+    where ["DATE(created_at) = DATE(?)", date.to_time]
+  end
 end
