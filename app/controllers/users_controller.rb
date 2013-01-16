@@ -8,7 +8,7 @@ class UsersController < ActionController::Base
   end
 
   def index
-    render json: User.all
+    render json: User.all, each_serializer: UserListSerializer
   end
 
   # used for logging in *and* account creation

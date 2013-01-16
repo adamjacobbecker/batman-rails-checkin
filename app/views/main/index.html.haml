@@ -10,9 +10,9 @@
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
         .container
-          %a.brand{:href => '/'}
+          %a.brand{"data-route" => "'/'"}
             Batman Rails Checkin
-          %ul.nav
+          %ul.nav{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li{:data => {"foreach-nav" => "window.BatmanRailsCheckin.navLinks", |
                 "addclass-active" => "window.BatmanRailsCheckin.currentRoute.controller | matches nav.controller"}}
               %a{:data => {"bind" => "nav.text", "route" => "nav.route"}}

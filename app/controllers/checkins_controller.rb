@@ -1,6 +1,6 @@
 class CheckinsController < ApplicationController
   def index
-    render json: Checkin.all
+    render json: Checkin.all, each_serializer: CheckinListSerializer
   end
 
   def show

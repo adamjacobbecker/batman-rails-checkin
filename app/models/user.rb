@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     checkins.order("created_at DESC").first
   end
 
+  def gravatar_url
+    "//gravatar.com/avatar/#{Digest::MD5::hexdigest(email.downcase)}?size=45"
+  end
+
   private
 
   def create_remember_token

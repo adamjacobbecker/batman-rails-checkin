@@ -3,10 +3,10 @@
 #= require twitter/bootstrap
 
 # Batman.js and its adapters
-#= require batman/es5-shim
-#= require batman/batman
-#= require batman/batman.jquery
-#= require batman/batman.rails
+#= require es5-shim
+#= require batman
+#= require batman.jquery
+#= require batman.rails
 
 #= require batman_rails_checkin
 

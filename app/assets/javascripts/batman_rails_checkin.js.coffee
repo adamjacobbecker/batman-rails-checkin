@@ -6,7 +6,6 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   @title = "Batman Rails Checkin"
 
-  # 0.8.0 changed to this syntax
   Batman.ViewStore.prefix = 'assets/views'
 
   @root 'main#index'

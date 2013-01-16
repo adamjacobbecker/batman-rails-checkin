@@ -9,8 +9,6 @@ gem 'rails-api'
 
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
-gem 'batman-rails'
-
 group :development, :test do
   gem 'debugger'
   gem 'sqlite3'

@@ -1,0 +1,45 @@
+@import 'nib'
+
+.clearfix
+  clear both
+
+ul.user-list
+  padding 0
+  background-color #fff
+  border-radius(6px)
+
+
+  > li:first-child > a
+    border-radius(6px 6px 0 0)
+
+  > li:last-child > a
+    border-radius(0 0 6px 6px)
+
+  > li.active > a
+    background-color #ddd
+    text-shadow none
+
+  > li > a
+    margin 0 0 -1px
+    display block
+    border 1px solid #e5e5e5
+    padding 10px
+    position relative
+
+    .view-user-icon
+      position absolute
+      top 50%
+      margin-top -7px
+      right 0
+      color #444
+
+    img
+      float left
+      margin-right 10px
+
+    .email
+      color #333
+
+    .checkin
+      display block
+      color #aaa
