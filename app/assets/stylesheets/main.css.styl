@@ -8,10 +8,12 @@
 
 .row-fluid > .fixed-sidebar
   margin-left 340px
+  position relative
 
-.post-checkin-button-wrapper
-  text-align right
-  padding-bottom 10px
+.post-checkin-button
+  position absolute
+  top -8px
+  right 2px
 
 .checkins
   margin 0 -20px
@@ -22,7 +24,18 @@
   float left
 
 .checkin-header
+  margin-bottom 13px
+
+  a
+    color #333
+    font-weight bold
+    margin-left 3px
+
+  .time
+    color #999
+
   .gravatar
+    margin-top -4px
     width 26px
     height 26px
     border-radius(13px)

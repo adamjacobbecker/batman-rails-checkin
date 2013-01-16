@@ -1,5 +1,5 @@
 class CheckinSerializer < ActiveModel::Serializer
-  attributes :id, :body, :body_html, :date, :date_slashes, :date_pretty, :user_id
+  attributes :id, :body, :body_html, :date, :date_slashes, :date_pretty, :time_pretty, :user_id
 
   def date_slashes
     date_pretty(true)
@@ -15,6 +15,10 @@ class CheckinSerializer < ActiveModel::Serializer
     else
       date.to_time.strftime("%-m/%-d/%y")
     end
+  end
+
+  def time_pretty
+    object.created_at.strftime("%-H:%M%P")
   end
 
   def body_html

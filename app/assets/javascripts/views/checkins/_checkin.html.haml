@@ -2,6 +2,9 @@
   .checkin-header
     %img.gravatar{"data-bind-src" => "checkin.user.gravatar_url"}
     %a{"data-route" => "", "data-bind" => "checkin.user.name"}
+    %span.time{"data-hideif" => "dontDisplayCheckinTimes"}
+      at
+      %span{"data-bind" => "checkin.time_pretty"}
     %span{"data-hideif" => "dontDisplayCheckinDates"}
       on
       %a{"data-bind" => "checkin.date_slashes", "data-route" => "checkin.dateRoute"}

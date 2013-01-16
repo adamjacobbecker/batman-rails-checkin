@@ -8,7 +8,7 @@ class BatmanRailsCheckin.Checkin extends Batman.Model
   @persist Batman.RailsStorage
 
   # fields
-  @encode "body", "body_html", "date", "date_slashes", "date_pretty"
+  @encode "body", "body_html", "date", "date_slashes", "date_pretty", "time_pretty"
 
   # validations
   @validate "body", presence: true
