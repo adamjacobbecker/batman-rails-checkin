@@ -3,7 +3,10 @@
     %div{"data-partial" => "main/_sidebar"}
 
   .fixed-sidebar
-    %h4 &nbsp;
+    .post-checkin-button-wrapper
+      %a.btn.btn-success{"data-route" => "routes.checkins.new"}
+        %i.icon-bullhorn
+        Post Checkin
 
     %checkins
       %div{"data-foreach-checkin" => "checkins", "data-partial" => "checkins/_checkin"}

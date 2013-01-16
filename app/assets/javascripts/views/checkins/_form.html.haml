@@ -17,4 +17,4 @@
       %textarea#post_content.span8{:cols => "40", "data-bind" => "checkin.body", :name => "checkin[body]", :rows => "20"}
 .actions
   %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Submit"}
-    %a.btn{'data-route' => 'checkin'} Cancel
+    %a.btn{"onclick" => "history.back();"} Cancel
