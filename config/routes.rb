@@ -18,6 +18,7 @@ BatmanRailsCheckin::Application.routes.draw do
   end
 
   get 'days', to: 'days#index', constraints: FormatTest.new(:json)
+  get 'days/:date', to: 'days#show', constraints: FormatTest.new(:json)
 
   get '/*foo', :to => 'main#index', :constraints => FormatTest.new(:html)
   get '/', :to => 'main#index', :constraints => FormatTest.new(:html)

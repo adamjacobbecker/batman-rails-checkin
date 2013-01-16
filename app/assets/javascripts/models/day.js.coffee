@@ -1,6 +1,6 @@
 class BatmanRailsCheckin.Day extends Batman.Model
-  # @hasMany 'checkins',
-  #   autoload: false
+  @hasMany 'checkins',
+    autoload: false
 
   @resourceName: 'day'
   @storageKey: 'days'
@@ -13,4 +13,7 @@ class BatmanRailsCheckin.Day extends Batman.Model
   @encode "date", "checkin_count", "date_pretty"
 
   @accessor 'route', ->
-    '/checkins/by_date/' + @get('date')
+    if @get('date_pretty') is "Today"
+      '/'
+    else
+      '/checkins/by_date/' + @get('date')

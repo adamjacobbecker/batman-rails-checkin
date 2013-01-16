@@ -1,21 +1,22 @@
 class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseController
   routingKey: 'checkins'
 
-  index: (params) ->
-    @authenticated =>
-      BatmanRailsCheckin.set 'pageTitle', 'Checkins'
-      BatmanRailsCheckin.Checkin.load (err, results) =>
-        @set 'checkins', results
-        @render()
+  # index: (params) ->
+  #   BatmanRailsCheckin.Day.load (err, days) =>
+  #     @by_date({date: days[0].get('date')})
+  #   @render(false)
 
   by_date: (params) ->
     @authenticated =>
       @set 'users', BatmanRailsCheckin.User.get('all')
       @set 'checkins', BatmanRailsCheckin.Checkin.get('all')
-      @set 'days', BatmanRailsCheckin.Day.get('all')
 
       BatmanRailsCheckin.Day.load (err, days) =>
-        @set 'currentDay', days[0].get('date')
+        @set 'days', days
+
+      BatmanRailsCheckin.Day.find params.date || 'today', (err, day) =>
+        @set 'currentDay', day.get('date')
+        console.log day.get('checkins')
 
       @render()
 

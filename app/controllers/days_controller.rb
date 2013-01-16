@@ -13,6 +13,20 @@ class DaysController < ApplicationController
     render json: days
   end
 
+  def show
+    date = params[:date]
+
+    date = Date.current if date == "today"
+
+    day = {
+      date: date,
+      date_pretty: prettify_date(date),
+      checkins: ActiveModel::ArraySerializer.new(Checkin.for_date(date))
+    }
+
+    render json: day
+  end
+
   private
 
   def prettify_date(date)
@@ -21,7 +35,7 @@ class DaysController < ApplicationController
     elsif date == Date.yesterday
       "Yesterday"
     else
-      date.to_time.strftime("%_m/%_d/%y")
+      date.to_time.strftime("%-m/%-d/%y")
     end
   end
 end
