@@ -7,6 +7,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
     @set 'displayCheckinTimes', true
     @set 'displayCheckinDates', true
     @set 'currentDay', undefined
+    @set 'sidebarViewByDate', true
 
   # index: (params) ->
   #   BatmanRailsCheckin.Day.load (err, days) =>
@@ -94,3 +95,11 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
 
     @get('checkins').remove(context.get('checkin'))
 
+
+  switchViewByDateUser: ->
+    if @get('sidebarViewByDate')
+      @set 'sidebarViewByDate', false
+      @set 'sidebarViewByUser', true
+    else
+      @set 'sidebarViewByDate', true
+      @set 'sidebarViewByUser', false
