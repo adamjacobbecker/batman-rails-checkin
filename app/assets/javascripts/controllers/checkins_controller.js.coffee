@@ -1,6 +1,13 @@
 class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseController
   routingKey: 'checkins'
 
+  @beforeFilter 'resetCheckinDisplayParams'
+
+  resetCheckinDisplayParams: ->
+    @set 'displayCheckinTimes', true
+    @set 'displayCheckinDates', true
+    @set 'sidebarViewingDay', 'true'
+
   # index: (params) ->
   #   BatmanRailsCheckin.Day.load (err, days) =>
   #     @by_date({date: days[0].get('date')})
@@ -10,7 +17,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
     @authenticated =>
       @set 'users', BatmanRailsCheckin.User.get('all')
       @set 'days', BatmanRailsCheckin.Day.get('all')
-      @set 'dontDisplayCheckinDates', true
+      @set 'displayCheckinDates', false
 
       BatmanRailsCheckin.Day.find params.date || 'today', (err, day) =>
         @set 'sidebarViewingDay', day.get('date')

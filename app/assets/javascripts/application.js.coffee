@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
-#= require twitter/bootstrap
+#= require bootstrap
+#= require bootstrap_ujs
 
 # Batman.js and its adapters
 #= require es5-shim
