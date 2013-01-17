@@ -13,7 +13,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
       @set 'dontDisplayCheckinDates', true
 
       BatmanRailsCheckin.Day.find params.date || 'today', (err, day) =>
-        @set 'currentDay', day.get('date')
+        @set 'sidebarViewingDay', day.get('date')
         @set 'checkins', day.get('checkins')
 
       @render()
@@ -29,7 +29,21 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
   new: (params) ->
     @authenticated =>
       BatmanRailsCheckin.set 'pageTitle', 'New Checkin'
-      @set 'checkin', new BatmanRailsCheckin.Checkin()
+      @set 'checkin', new BatmanRailsCheckin.Checkin
+        user_id: BatmanRailsCheckin.get('currentUser').get('id')
+        body: """
+          #### Get Done
+
+
+          #### Got Done
+
+
+          #### Flags
+
+
+          #### Shelf
+
+        """
       @form = @render()
 
   create: (params) ->
@@ -41,7 +55,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
           throw err unless err instanceof Batman.ErrorsSet
         else
           BatmanRailsCheckin.flashSuccess "Checkin created successfully!"
-          @redirect '/checkins'
+          @redirect '/'
 
   edit: (params) ->
     @authenticated =>

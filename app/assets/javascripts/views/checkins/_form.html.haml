@@ -10,11 +10,17 @@
         prevented this checkin from being created:
     %ul
       %li{"data-bind" => "error.message", "data-foreach-error" => "checkin.errors"}
-%fieldset
-  .clearfix{"data-addclass-error" => 'checkin.errors.body.length'}
-    %label{:for => "checkin_body"} Body
-    .input
-      %textarea#post_content.span8{:cols => "40", "data-bind" => "checkin.body", :name => "checkin[body]", :rows => "20"}
+
+.row-fluid
+  %fieldset.span6
+    .clearfix{"data-addclass-error" => 'checkin.errors.body.length'}
+      .input
+        %textarea#post_content{:cols => "40", "data-bind" => "checkin.body", :name => "checkin[body]", :rows => "20"}
+
+  %div.span6{"data-hideif" => "checkin.id"}
+    %div{"data-partial" => "checkins/_checkin", "data-context-checkin" => "currentUser.latest_checkin", "data-context-user" => "currentUser"}
+
 .actions
   %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Submit"}
     %a.btn{"onclick" => "history.back();"} Cancel
+

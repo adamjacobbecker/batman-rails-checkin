@@ -1,4 +1,6 @@
-class CheckinsController < ApplicationController
+class CheckinsController < ActionController::Base
+  include UsersHelper
+
   def index
     render json: Checkin.all, each_serializer: CheckinListSerializer
   end
@@ -14,13 +16,15 @@ class CheckinsController < ApplicationController
   end
 
   def update
+    params[:checkin].delete(:user_id)
     checkin = Checkin.find(params[:id])
     checkin.update_attributes(params[:checkin])
     render json: checkin
   end
 
   def create
-    checkin = Checkin.new(params[:checkin])
+    params[:checkin].delete(:user_id)
+    checkin = current_user.checkins.build(params[:checkin])
     checkin.save
     render json: checkin
   end

@@ -10,6 +10,9 @@ class BatmanRailsCheckin.Checkin extends Batman.Model
   # fields
   @encode "body", "body_html", "date", "date_slashes", "date_pretty", "time_pretty"
 
+  @encode "user_id", ->
+    null
+
   # validations
   @validate "body", presence: true
 
