@@ -1,7 +1,7 @@
-%div{"data-showif" => "sidebarViewingDay"}
+%div
   %h4 Checkins by Date
   %ul.nav.nav-list.nav-list-bordered.day-list
-    %li{"data-foreach-day" => "days", "data-addclass-active" => "sidebarViewingDay | matches day.date"}
+    %li{"data-foreach-day" => "days", "data-addclass-active" => "currentDay.date | matches day.date"}
       %a{"data-route" => "day.route"}
         %i.icon-chevron-right.view-icon
         %span.badge-wrapper

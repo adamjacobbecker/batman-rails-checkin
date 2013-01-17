@@ -6,7 +6,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
   resetCheckinDisplayParams: ->
     @set 'displayCheckinTimes', true
     @set 'displayCheckinDates', true
-    @set 'sidebarViewingDay', 'true'
+    @set 'currentDay', undefined
 
   # index: (params) ->
   #   BatmanRailsCheckin.Day.load (err, days) =>
@@ -20,7 +20,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
       @set 'displayCheckinDates', false
 
       BatmanRailsCheckin.Day.find params.date || 'today', (err, day) =>
-        @set 'sidebarViewingDay', day.get('date')
+        @set 'currentDay', day
         @set 'checkins', day.get('checkins')
 
       @render()
@@ -84,11 +84,9 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
           @redirect '/checkins'
 
   # not routable, an event
-  destroy: ->
-    @authenticated =>
-      @get('checkin').destroy (err) =>
-        if err
-          throw err unless err instanceof Batman.ErrorsSet
-        else
-          BatmanRailsCheckin.flashSuccess "Removed successfully!"
-          @redirect '/checkins'
+  destroy: (node, event, context) ->
+    context.get('checkin').destroy (err) =>
+      if err
+        throw err unless err instanceof Batman.ErrorsSet
+      else
+        BatmanRailsCheckin.flashSuccess "Removed successfully!"

@@ -8,5 +8,6 @@
     %span{"data-showif" => "displayCheckinDates"}
       on
       %a{"data-bind" => "checkin.date_slashes", "data-route" => "checkin.dateRoute"}
+    %a.delete{"data-showif" => "checkin.user_id | equals currentUser.id", "data-event-click" => "destroy"} Delete
 
   %p{"data-bind" => "checkin.body_html | raw", "data-view" => "CheckinBodyView"}

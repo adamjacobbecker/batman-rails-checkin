@@ -1,6 +1,5 @@
 class BatmanRailsCheckin.Day extends Batman.Model
-  @hasMany 'checkins',
-    autoload: false
+  @hasMany 'checkins'
 
   @resourceName: 'day'
   @storageKey: 'days'
