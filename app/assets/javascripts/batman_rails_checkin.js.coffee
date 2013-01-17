@@ -18,10 +18,9 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
     # {route: @get('routes.checkins'), controller: "checkins", text: "Checkins"},
   ]
 
-  @on 'run', ->
+  # @on 'run', ->
 
-  @on 'ready', ->
-    console?.log "BatmanRailsCheckin ready for use."
+  # @on 'ready', ->
 
   @flash: Batman()
   @flash.accessor

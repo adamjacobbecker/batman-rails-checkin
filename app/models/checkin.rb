@@ -3,6 +3,8 @@ class Checkin < ActiveRecord::Base
 
   belongs_to :user
 
+  # default_scope order('created_at DESC')
+
   def date
     created_at.strftime("%Y-%m-%d")
   end

@@ -17,6 +17,7 @@ class CheckinsController < ActionController::Base
 
   def update
     params[:checkin].delete(:user_id)
+    params[:checkin].delete(:created_at)
     checkin = Checkin.find(params[:id])
     checkin.update_attributes(params[:checkin])
     render json: checkin
@@ -24,6 +25,7 @@ class CheckinsController < ActionController::Base
 
   def create
     params[:checkin].delete(:user_id)
+    params[:checkin].delete(:created_at)
     checkin = current_user.checkins.build(params[:checkin])
     checkin.save
     render json: checkin

@@ -1,5 +1,5 @@
 class CheckinSerializer < ActiveModel::Serializer
-  attributes :id, :body, :body_html, :date, :date_slashes, :date_pretty, :time_pretty, :user_id
+  attributes :id, :body, :body_html, :date, :date_slashes, :date_pretty, :time_pretty, :user_id, :created_at
 
   def date_slashes
     date_pretty(true)

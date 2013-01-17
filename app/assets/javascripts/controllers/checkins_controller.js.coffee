@@ -31,6 +31,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
       BatmanRailsCheckin.set 'pageTitle', 'New Checkin'
       @set 'checkin', new BatmanRailsCheckin.Checkin
         user_id: BatmanRailsCheckin.get('currentUser').get('id')
+        created_at: new Date().toISOString()
         body: """
           #### Get Done
 
