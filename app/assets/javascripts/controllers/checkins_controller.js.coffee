@@ -62,7 +62,6 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
         if err
           throw err unless err instanceof Batman.ErrorsSet
         else
-          BatmanRailsCheckin.flashSuccess "Checkin created successfully!"
           @redirect '/'
 
   edit: (params) ->
@@ -88,5 +87,10 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
     context.get('checkin').destroy (err) =>
       if err
         throw err unless err instanceof Batman.ErrorsSet
-      else
-        BatmanRailsCheckin.flashSuccess "Removed successfully!"
+
+    @get('days').find( (day) ->
+      context.get('checkin').get('date') is day.get('date')
+    ).decrementCheckinCount()
+
+    @get('checkins').remove(context.get('checkin'))
+

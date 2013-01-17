@@ -16,3 +16,6 @@ class BatmanRailsCheckin.Day extends Batman.Model
       '/'
     else
       '/checkins/by_date/' + @get('date')
+
+  decrementCheckinCount: ->
+    @set 'checkin_count', @get('checkin_count') - 1
