@@ -1,8 +1,8 @@
-%div{"data-showif" => "sidebarViewByDate"}
+%div{"data-showif" => "sidebarViewBy | matches \"date\""}
   .sidebar-date-user-toggle
     Checkins by Date
     \/
-    %a{"data-event-click" => "switchViewByDateUser"} Checkins by User
+    %a{"data-event-click" => "switchViewByDateUser"} by User
   %ul.nav.nav-list.nav-list-bordered.day-list
     %li{"data-foreach-day" => "days", "data-addclass-active" => "currentDay.date | matches day.date"}
       %a{"data-route" => "day.route"}
@@ -11,11 +11,11 @@
           %span.badge.badge-inverse{"data-bind" => "day.checkin_count"}
         %span{"data-bind" => "day.date_pretty"}
 
-%div{"data-showif" => "sidebarViewByUser"}
+%div{"data-showif" => "sidebarViewBy | matches \"user\""}
   .sidebar-date-user-toggle
     %a{"data-event-click" => "switchViewByDateUser"} Checkins by Date
     \/
-    Checkins by User
+    by User
   %ul.nav.nav-list.nav-list-bordered.user-list
     %li{"data-foreach-user" => "users"}
       %a{"data-route" => "routes.checkins[user.latest_checkin.id]"}
