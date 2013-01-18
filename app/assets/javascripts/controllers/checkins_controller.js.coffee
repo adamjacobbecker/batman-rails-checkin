@@ -9,7 +9,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
     @set 'currentDay', undefined
 
     if !@get('sidebarViewBy')
-      @set 'sidebarViewBy', "date"
+      @set 'sidebarViewBy', BatmanRailsCheckin.get('preferences').get('sidebarViewBy') || "date"
 
   # index: (params) ->
   #   BatmanRailsCheckin.Day.load (err, days) =>
@@ -101,5 +101,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
   switchViewByDateUser: ->
     if @get('sidebarViewBy') is "date"
       @set 'sidebarViewBy', "user"
+      BatmanRailsCheckin.get('preferences').updateAttributes({sidebarViewBy: 'user'}).save()
     else
       @set 'sidebarViewBy', "date"
+      BatmanRailsCheckin.get('preferences').updateAttributes({sidebarViewBy: 'date'}).save()

@@ -18,7 +18,9 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
     # {route: @get('routes.checkins'), controller: "checkins", text: "Checkins"},
   ]
 
-  # @on 'run', ->
+  @on 'run', ->
+    preference = BatmanRailsCheckin.Preference.get('first') || BatmanRailsCheckin.Preference.create({})
+    @set 'preferences', preference
 
   # @on 'ready', ->
 
