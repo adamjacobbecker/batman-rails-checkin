@@ -11,7 +11,7 @@ class BatmanRailsCheckin.CheckinBodyView extends Batman.View
     newGetDoneHtml = ""
     for getDone in $getDone.text().split('\n')
       newGetDoneHtml += "<li><span>&rarr;</span> #{getDone}</li>"
-    $getDone.replaceWith("<ul>#{newGetDoneHtml}</ul>")
+    $getDone.replaceWith("<ul class='get-done'>#{newGetDoneHtml}</ul>")
 
     newGotDoneHtml = ""
     for gotDone in $gotDone.text().split('\n')
