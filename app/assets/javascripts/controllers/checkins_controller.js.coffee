@@ -4,11 +4,11 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
   @beforeFilter 'resetCheckinDisplayParams'
 
   resetCheckinDisplayParams: ->
-    @set 'users', BatmanRailsCheckin.User.get('all')
+    if !@get('users') then BatmanRailsCheckin.User.load (err, users) =>
+      @set 'users', users
 
-    if !@get('days')
-      BatmanRailsCheckin.Day.load {now: Math.round(Date.now()/1000)}, (err, days) =>
-        @set 'days', days
+    if !@get('days') then BatmanRailsCheckin.Day.load {now: Math.round(Date.now()/1000)}, (err, days) =>
+      @set 'days', days
 
   by_date: (params) ->
     @authenticated =>

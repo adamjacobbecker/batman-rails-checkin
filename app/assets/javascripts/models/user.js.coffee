@@ -1,6 +1,5 @@
 class BatmanRailsCheckin.User extends Batman.Model
   @hasMany 'checkins',
-    autoload: false
     saveInline: false
 
   @resourceName: 'user'
@@ -9,7 +8,11 @@ class BatmanRailsCheckin.User extends Batman.Model
   @persist Batman.RailsStorage
 
   # fields
-  @encode "email", "name", "password", "gravatar_url", "latest_checkin"
+  @encode "email", "name", "password", "gravatar_url"
+
+  @encode "latest_checkin",
+    decode: (x) ->
+      new BatmanRailsCheckin.Checkin(x)
 
   # validations
   @validate "email", presence: true
@@ -17,3 +20,12 @@ class BatmanRailsCheckin.User extends Batman.Model
   @accessor 'route', ->
     '/checkins/by_user/' + @get('id')
 
+  @accessor 'status', ->
+    latest = moment(@get('latest_checkin').created_at)
+
+    if latest > moment().subtract('days', 1)
+      "available"
+    else if latest > moment().subtract('days', 2)
+      "away"
+    else
+      "offline"

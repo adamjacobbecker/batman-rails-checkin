@@ -21,6 +21,8 @@
       %a{"data-route" => "user.route"}
         %i.icon-chevron-right.view-icon
         %img{"data-bind-src" => "user.gravatar_url"}
-        %span.email{"data-bind" => "user.name"}
-        %span.checkin{"data-bind" => "user.latest_checkin.body | truncate '25'"}
+        %span.email
+          %span{"data-bind" => "user.name"}
+          %i{"data-bind-class" => "user.status | append \" icon-circle\""}
+        %span.checkin{"data-bind" => "user.latest_checkin.firstGetDone"}
         .clearfix

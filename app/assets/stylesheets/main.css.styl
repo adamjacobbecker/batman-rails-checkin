@@ -15,6 +15,23 @@ a
 .sidebar-nav-fixed
   position fixed
 
+  li.active
+    i.icon-circle
+      text-shadow 0 -1px -1px #333
+
+  i.icon-circle
+    font-size 11px
+    text-shadow 0 -1px -1px #ccc
+
+    &.offline
+      color red
+
+    &.away
+      color #EBDB00
+
+    &.available
+      color green
+
 .sidebar-date-user-toggle
   position absolute
   top -24px

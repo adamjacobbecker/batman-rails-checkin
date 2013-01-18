@@ -23,3 +23,11 @@ class BatmanRailsCheckin.Checkin extends Batman.Model
       '/'
     else
       '/checkins/by_date/' + @get('date')
+
+  @accessor 'firstGetDone', ->
+    lines = @get('body').split("\n")
+
+    for line, i in lines
+      if line.match /Get Done/i then return lines[i + 1]
+
+    return lines[0]
