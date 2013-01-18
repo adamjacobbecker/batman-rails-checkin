@@ -21,7 +21,7 @@
               %textarea#post_content{:cols => "40", "data-bind" => "checkin.body", :name => "checkin[body]", :rows => "20"}
 
         %div.span6{"data-hideif" => "checkin.id"}
-          %div.recent-checkin{"data-partial" => "checkins/_checkin", "data-context-checkin" => "currentUser.latest_checkin", "data-context-user" => "currentUser", "data-view" => "LatestCheckinView"}
+          %div.recent-checkin{"data-partial" => "checkins/_checkin", "data-context-checkin" => "currentUser.latest_checkin", "data-context-user" => "currentUser", "data-view" => "LatestCheckinView", "data-showif" => "currentUser.latest_checkin.id"}
 
       .actions
         %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Submit"}

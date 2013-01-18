@@ -21,7 +21,9 @@ class BatmanRailsCheckin.User extends Batman.Model
     '/checkins/by_user/' + @get('id')
 
   @accessor 'status', ->
-    latest = moment(@get('latest_checkin').created_at)
+    return "offline" if !@get('latest_checkin').get('created_at')
+
+    latest = moment(@get('latest_checkin').get('created_at'))
 
     if latest > moment().subtract('days', 1)
       "available"

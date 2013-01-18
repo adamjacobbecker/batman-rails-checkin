@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require bootstrap_ujs
+#= require underscore
 #= require moment
 
 # Batman.js and its adapters
