@@ -20,7 +20,7 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   @on 'run', ->
     if window.bootstrapData
-      @set 'currentUser', new BatmanRailsCheckin.User().fromJSON(bootstrapData.user)
+      @set 'currentUser', new BatmanRailsCheckin.User().fromJSON(bootstrapData.user_list)
 
     @set 'preferences', BatmanRailsCheckin.Preference.get('first') || BatmanRailsCheckin.Preference.create({})
 
