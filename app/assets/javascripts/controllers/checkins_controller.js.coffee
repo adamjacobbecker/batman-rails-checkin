@@ -4,8 +4,6 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
   @beforeFilter 'resetCheckinDisplayParams'
 
   resetCheckinDisplayParams: ->
-    @set 'displayCheckinTimes', true
-    @set 'displayCheckinDates', true
     @set 'currentDay', undefined
 
     if !@get('sidebarViewBy')
@@ -19,8 +17,9 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
   by_date: (params) ->
     @authenticated =>
       @set 'users', BatmanRailsCheckin.User.get('all')
-      @set 'days', BatmanRailsCheckin.Day.get('all')
-      @set 'displayCheckinDates', false
+
+      BatmanRailsCheckin.Day.load {now: Math.round(Date.now()/1000)}, (err, days) =>
+        @set 'days', days
 
       BatmanRailsCheckin.Day.find params.date || 'today', (err, day) =>
         @set 'currentDay', day

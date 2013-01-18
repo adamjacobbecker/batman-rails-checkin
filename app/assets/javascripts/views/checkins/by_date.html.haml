@@ -7,5 +7,6 @@
       %i.icon-bullhorn
       Post Checkin
 
+    %p{"data-hideif" => "checkins | get \"first\""} No checkins to display.
     .checkins
       .checkin-wrapper{"data-foreach-checkin" => "checkins.sortedByDescending.created_at", "data-partial" => "checkins/_checkin"}
