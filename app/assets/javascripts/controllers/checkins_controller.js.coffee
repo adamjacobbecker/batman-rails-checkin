@@ -4,29 +4,36 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
   @beforeFilter 'resetCheckinDisplayParams'
 
   resetCheckinDisplayParams: ->
-    @set 'currentDay', undefined
+    @set 'users', BatmanRailsCheckin.User.get('all')
 
-    if !@get('sidebarViewBy')
-      @set 'sidebarViewBy', BatmanRailsCheckin.get('preferences').get('sidebarViewBy') || "date"
-
-  # index: (params) ->
-  #   BatmanRailsCheckin.Day.load (err, days) =>
-  #     @by_date({date: days[0].get('date')})
-  #   @render(false)
+    if !@get('days')
+      BatmanRailsCheckin.Day.load {now: Math.round(Date.now()/1000)}, (err, days) =>
+        @set 'days', days
 
   by_date: (params) ->
     @authenticated =>
-      @set 'users', BatmanRailsCheckin.User.get('all')
-
-      if !@get('days')
-        BatmanRailsCheckin.Day.load {now: Math.round(Date.now()/1000)}, (err, days) =>
-          @set 'days', days
+      @set 'sidebarViewBy', 'date'
+      @set 'sidebarActiveUser', undefined
+      @set 'currentlyViewingBy', 'date'
 
       BatmanRailsCheckin.Day.find params.date || moment().format('YYYY-MM-DD'), (err, day) =>
-        @set 'currentDay', day
+        @set 'sidebarActiveDay', day
         @set 'checkins', day.get('checkins')
 
       @render()
+
+  by_user: (params) ->
+    @authenticated =>
+      @set 'sidebarViewBy', 'user'
+      @set 'sidebarActiveDay', undefined
+      @set 'currentlyViewingBy', 'user'
+
+      BatmanRailsCheckin.User.find parseInt(params.user_id), (err, user) =>
+        @set 'sidebarActiveUser', user
+        user.get('checkins').load (err, checkins) =>
+          @set 'checkins', checkins
+
+      @render source: "checkins/by_date"
 
   show: (params) ->
     @authenticated =>

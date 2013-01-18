@@ -3,10 +3,14 @@
     %div{"data-partial" => "main/_sidebar"}
 
   .fixed-sidebar
+    %h5.currently-viewing-by{"data-showif" => "currentlyViewingBy | matches \"date\""}
+      Checkins for <span data-bind="sidebarActiveDay.date_pretty"></span>
+    %h5.currently-viewing-by{"data-showif" => "currentlyViewingBy | matches \"user\""}
+      Checkins from <span data-bind="sidebarActiveUser.name"></span>
     %a.btn.btn-success.post-checkin-button{"data-route" => "routes.checkins.new"}
       %i.icon-bullhorn
       Post Checkin
 
-    %p{"data-hideif" => "checkins | get \"first\""} No checkins to display.
+    %p.no-checkins{"data-hideif" => "checkins | get \"first\""} No checkins to display.
     .checkins
       .checkin-wrapper{"data-foreach-checkin" => "checkins.sortedByDescending.created_at", "data-partial" => "checkins/_checkin"}

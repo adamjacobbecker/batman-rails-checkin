@@ -13,6 +13,11 @@ class UsersController < ActionController::Base
     render json: User.all, each_serializer: UserListSerializer
   end
 
+  def show
+    user = User.find params[:id]
+    render json: user
+  end
+
   # used for logging in *and* account creation
   def create
     user = User.find_by_email(params[:user][:email].downcase)

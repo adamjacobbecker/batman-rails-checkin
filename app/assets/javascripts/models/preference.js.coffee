@@ -5,4 +5,4 @@ class BatmanRailsCheckin.Preference extends Batman.Model
   @persist Batman.LocalStorage
 
   # fields
-  @encode "sidebarViewBy"
+  # @encode "sidebarViewBy"

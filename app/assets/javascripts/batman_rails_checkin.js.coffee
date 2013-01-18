@@ -2,6 +2,10 @@ Batman.config =
   pathPrefix: '/'
   usePushState: true
 
+Batman.mixin Batman.Filters,
+  momentFormatDateVerbose: (value) ->
+    moment(value).format("\\a\\t h:mma \\o\\n M/D/YY")
+
 window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   @title = "Batman Rails Checkin"
@@ -11,6 +15,7 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   @root 'checkins#by_date'
   @resources 'checkins'
   @route '/checkins/by_date/:date', 'checkins#by_date'
+  @route '/checkins/by_user/:user_id', 'checkins#by_user'
   @route '/login', 'main#login'
   @route '/logout', 'main#logout'
 

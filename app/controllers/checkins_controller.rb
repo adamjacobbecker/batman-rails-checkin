@@ -2,7 +2,13 @@ class CheckinsController < ActionController::Base
   include UsersHelper
 
   def index
-    render json: Checkin.all, each_serializer: CheckinListSerializer
+    if params[:user_id]
+      checkins = Checkin.where(user_id: params[:user_id])
+    else
+      checkins = Checkin.all
+    end
+
+    render json: checkins, each_serializer: CheckinListSerializer
   end
 
   def show

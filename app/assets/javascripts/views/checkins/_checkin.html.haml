@@ -2,7 +2,7 @@
   .checkin-header
     %img.gravatar{"data-bind-src" => "checkin.user.gravatar_url | default user.gravatar_url"}
     %a.name{"data-route" => "", "data-bind" => "checkin.user.name | default user.name"}
-    %span.time{"data-bind" => "checkin.created_at"}
+    %span.time{"data-bind" => "checkin.created_at | momentFormatDateVerbose"}
     %a.delete{"data-showif" => "checkin.user_id | equals currentUser.id", "data-event-click" => "destroy"} Delete
 
   %p{"data-bind" => "checkin.body_html | raw", "data-view" => "CheckinBodyView"}

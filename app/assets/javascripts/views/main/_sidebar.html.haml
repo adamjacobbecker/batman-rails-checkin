@@ -4,7 +4,7 @@
     \/
     %a{"data-event-click" => "switchViewByDateUser"} by User
   %ul.nav.nav-list.nav-list-bordered.day-list
-    %li{"data-foreach-day" => "days", "data-addclass-active" => "currentDay.date | matches day.date"}
+    %li{"data-foreach-day" => "days", "data-addclass-active" => "sidebarActiveDay.date | matches day.date"}
       %a{"data-route" => "day.route"}
         %i.icon-chevron-right.view-icon
         %span.badge-wrapper
@@ -17,8 +17,8 @@
     \/
     by User
   %ul.nav.nav-list.nav-list-bordered.user-list
-    %li{"data-foreach-user" => "users"}
-      %a{"data-route" => "routes.checkins[user.latest_checkin.id]"}
+    %li{"data-foreach-user" => "users", "data-addclass-active" => "sidebarActiveUser.id | equals user.id"}
+      %a{"data-route" => "user.route"}
         %i.icon-chevron-right.view-icon
         %img{"data-bind-src" => "user.gravatar_url"}
         %span.email{"data-bind" => "user.name"}

@@ -13,3 +13,7 @@ class BatmanRailsCheckin.User extends Batman.Model
 
   # validations
   @validate "email", presence: true
+
+  @accessor 'route', ->
+    '/checkins/by_user/' + @get('id')
+
