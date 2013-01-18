@@ -18,10 +18,11 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
     @authenticated =>
       @set 'users', BatmanRailsCheckin.User.get('all')
 
-      BatmanRailsCheckin.Day.load {now: Math.round(Date.now()/1000)}, (err, days) =>
-        @set 'days', days
+      if !@get('days')
+        BatmanRailsCheckin.Day.load {now: Math.round(Date.now()/1000)}, (err, days) =>
+          @set 'days', days
 
-      BatmanRailsCheckin.Day.find params.date || 'today', (err, day) =>
+      BatmanRailsCheckin.Day.find params.date || moment().format('YYYY-MM-DD'), (err, day) =>
         @set 'currentDay', day
         @set 'checkins', day.get('checkins')
 

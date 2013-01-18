@@ -9,7 +9,7 @@
         %i.icon-chevron-right.view-icon
         %span.badge-wrapper
           %span.badge.badge-inverse{"data-bind" => "day.checkin_count"}
-        %span{"data-bind" => "day.date"}
+        %span{"data-bind" => "day.date_pretty"}
 
 %div{"data-showif" => "sidebarViewBy | matches \"user\""}
   .sidebar-date-user-toggle

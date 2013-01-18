@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require bootstrap_ujs
+#= require moment
 
 # Batman.js and its adapters
 #= require es5-shim
