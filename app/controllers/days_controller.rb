@@ -3,7 +3,7 @@ class DaysController < ApplicationController
     offset = params[:offset].to_i
     days = []
 
-    date = [Checkin.first.created_at.to_date, Time.at(params[:now].to_i - offset).to_date].max
+    date = ([Checkin.first.created_at, Time.now.utc].max - offset.minutes).to_date
 
     7.times do
       day = {

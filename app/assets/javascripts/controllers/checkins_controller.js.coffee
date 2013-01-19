@@ -7,7 +7,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
     if !@get('users') then BatmanRailsCheckin.User.load (err, users) =>
       @set 'users', users
 
-    if !@get('days') then BatmanRailsCheckin.Day.load {offset: new Date().getTimezoneOffset()}, (err, days) =>
+    if !@get('days') then BatmanRailsCheckin.Day.load {offset: moment().zone()}, (err, days) =>
       @set 'days', days
 
   by_date: (params) ->
