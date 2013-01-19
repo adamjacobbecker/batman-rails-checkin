@@ -1,6 +1,7 @@
 class BatmanRailsCheckin.User extends Batman.Model
   @hasMany 'checkins',
     saveInline: false
+    autoload: false
 
   @resourceName: 'user'
   @storageKey: 'users'
