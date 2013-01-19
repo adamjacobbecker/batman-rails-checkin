@@ -15,9 +15,9 @@
           %a.brand{"data-route" => "'/'"}
             Batman Rails Checkin
           %ul.nav{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
-            %li{:data => {"foreach-nav" => "window.BatmanRailsCheckin.navLinks", |
-                "addclass-active" => "window.BatmanRailsCheckin.currentRoute.controller | matches nav.controller"}}
-              %a{:data => {"bind" => "nav.text", "route" => "nav.route"}}
+            %li{:data => {"foreach-project" => "window.BatmanRailsCheckin.Project.all", |
+                "addclass-active" => "window.BatmanRailsCheckin.currentProjectId | equals project.id"}}
+              %a{:data => {"bind" => "project.name", "route" => "project.route"}}
 
           %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li

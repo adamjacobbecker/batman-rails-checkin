@@ -12,16 +12,16 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   Batman.ViewStore.prefix = 'assets/views'
 
-  @root 'checkins#by_date'
-  @resources 'checkins'
-  @route '/checkins/by_date/:date', 'checkins#by_date'
-  @route '/checkins/by_user/:user_id', 'checkins#by_user'
+  @root 'checkins#index'
+
+  @route '/projects/:project_id', 'checkins#by_date'
+  @route '/projects/:project_id/checkins/new', 'checkins#new'
+  @route '/projects/:project_id/checkins/by_date/:date', 'checkins#by_date'
+  @route '/projects/:project_id/checkins/by_user/:user_id', 'checkins#by_user'
+
+
   @route '/login', 'main#login'
   @route '/logout', 'main#logout'
-
-  @navLinks: [
-    # {route: @get('routes.checkins'), controller: "checkins", text: "Checkins"},
-  ]
 
   @on 'run', ->
     if window.bootstrapData

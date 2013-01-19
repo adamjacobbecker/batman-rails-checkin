@@ -3,24 +3,41 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
 
   @beforeFilter 'resetCheckinDisplayParams'
 
-  resetCheckinDisplayParams: ->
-    if !@get('users') then BatmanRailsCheckin.User.load (err, users) =>
-      @set 'users', users
+  resetCheckinDisplayParams: (params) ->
+    @set 'projects', BatmanRailsCheckin.Project.get('all')
 
-    if !@get('days') then BatmanRailsCheckin.Day.load {offset: moment().zone()}, (err, days) =>
-      @set 'days', days
+  withProject: (project_id, cb) ->
+    BatmanRailsCheckin.Project.find project_id, (err, project) =>
+      @set 'currentProject', project
+      BatmanRailsCheckin.set 'currentProjectId', project.id
+
+      # if !@get('users') then BatmanRailsCheckin.User.load (err, users) =>
+      #   @set 'users', users
+
+      if !@get('days') then project.get('days').load {offset: moment().zone()}, (err, days) =>
+        @set 'days', days
+
+      cb()
+
+
+  index: (params) ->
+    @authenticated =>
+      @set 'currentProjectId', 1
+      BatmanRailsCheckin.set 'currentProjectId', 1
+      @render()
 
   by_date: (params) ->
     @authenticated =>
-      @set 'sidebarViewBy', 'date'
-      @set 'sidebarActiveUser', undefined
-      @set 'currentlyViewingBy', 'date'
+      @withProject parseInt(params.project_id), =>
+        @set 'sidebarViewBy', 'date'
+        @set 'sidebarActiveUser', undefined
+        @set 'currentlyViewingBy', 'date'
 
-      BatmanRailsCheckin.Day.find params.date || moment().format('YYYY-MM-DD'), (err, day) =>
-        @set 'sidebarActiveDay', day
-        @set 'checkins', day.get('checkins')
+        console.log @get('currentProject').get('checkins').load
+        @get('currentProject').get('checkins').load {date: params.date || moment().format('YYYY-MM-DD')}, (err, checkins) ->
+          @set 'checkins', checkins
 
-      @render()
+        @render()
 
   by_user: (params) ->
     @authenticated =>

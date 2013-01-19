@@ -2,10 +2,15 @@ class BatmanRailsCheckin.Checkin extends Batman.Model
   @belongsTo 'user',
     autoload: false
 
+  @belongsTo 'project',
+    autoload: false
+
   @resourceName: 'checkin'
   @storageKey: 'checkins'
 
   @persist Batman.RailsStorage
+
+  @urlNestsUnder 'project'
 
   # fields
   @encode "body", "body_html", "date", "date_slashes", "date_pretty", "time_pretty",

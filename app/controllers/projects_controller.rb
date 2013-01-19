@@ -2,11 +2,11 @@ class ProjectsController < ActionController::Base
   include UsersHelper
 
   def index
-    render json: Project.all
+    render json: current_user.projects.all
   end
 
   def show
-    project = Project.find params[:id]
+    project = current_user.projects.find params[:id]
     render json: project
   end
 end

@@ -1,17 +1,6 @@
 class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseController
   routingKey: 'main'
 
-  index: (params) ->
-    @authenticated =>
-      @set 'users', BatmanRailsCheckin.User.get('all')
-      @set 'checkins', BatmanRailsCheckin.Checkin.get('all')
-      @set 'days', BatmanRailsCheckin.Day.get('all')
-
-      BatmanRailsCheckin.Day.load (err, days) =>
-        @set 'currentDay', days[0].get('date')
-
-      @render()
-
   login: (params) ->
     @notAuthenticated =>
       BatmanRailsCheckin.set 'pageTitle', 'Login'

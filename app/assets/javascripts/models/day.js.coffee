@@ -1,12 +1,16 @@
 class BatmanRailsCheckin.Day extends Batman.Model
   @hasMany 'checkins'
 
+  @belongsTo 'project'
+
   @resourceName: 'day'
   @storageKey: 'days'
 
   @primaryKey: 'date'
 
   @persist Batman.RailsStorage
+
+  @urlNestsUnder 'project'
 
   # fields
   @encode "date", "checkin_count"

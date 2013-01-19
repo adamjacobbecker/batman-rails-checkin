@@ -1,6 +1,8 @@
 class BatmanRailsCheckin.User extends Batman.Model
   @hasMany 'checkins',
-    saveInline: false
+    autoload: false
+
+  @hasMany 'projects',
     autoload: false
 
   @resourceName: 'user'
