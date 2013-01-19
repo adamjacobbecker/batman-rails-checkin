@@ -61,6 +61,10 @@ module BatmanRailsCheckin
 
     Stylus.use(:nib) if defined?(Stylus)
 
+    if defined?(Uglifier)
+        config.assets.js_compressor = Uglifier.new({mangle: false})
+    end
+
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     config.middleware.use ActionDispatch::Cookies
