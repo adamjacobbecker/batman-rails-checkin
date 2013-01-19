@@ -1,13 +1,14 @@
 class DaysController < ApplicationController
   def index
+    offset = params[:offset].to_i
     days = []
 
-    date = [Checkin.first.created_at.to_date, Time.at(params[:now].to_i).to_date].max
+    date = [Checkin.first.created_at.to_date, Time.at(params[:now].to_i - offset).to_date].max
 
     7.times do
       day = {
         date: date,
-        checkin_count: Checkin.for_date(date).count,
+        checkin_count: Checkin.for_date(date, offset).count,
       }
       days.push day
       date = date - 1.day

@@ -12,7 +12,9 @@ class Checkin < ActiveRecord::Base
   def date=(x)
   end
 
-  def self.for_date(date)
-    where ["DATE(created_at) = DATE(?)", date.to_time]
+  def self.for_date(date, offset = 0)
+    startDate = Time.at(date.to_time.to_i - offset)
+    endDate = Time.at(date.to_time.to_i - offset + 86399)
+    where(created_at: startDate..endDate)
   end
 end
