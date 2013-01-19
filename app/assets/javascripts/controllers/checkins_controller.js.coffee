@@ -1,14 +1,10 @@
 class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseController
   routingKey: 'checkins'
 
-  @beforeFilter 'resetCheckinDisplayParams'
-
-  resetCheckinDisplayParams: (params) ->
-    @set 'projects', BatmanRailsCheckin.Project.get('all')
-
   withProject: (project_id, cb) ->
     project_id = parseInt(project_id)
 
+    # if BatmanRailsCheckin.Project.get('all').indexedByUnique('id').get(project_id) then return cb()
     BatmanRailsCheckin.Project.find project_id, (err, project) =>
       @set 'currentProject', project
       BatmanRailsCheckin.set 'currentProjectId', project.get('id')
@@ -31,7 +27,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
         @get('currentProject').get('checkins').load {date: params.date || moment().format('YYYY-MM-DD')}, (err, checkins) =>
           @set 'checkins', checkins
 
-        @set 'sidebarActiveDay', @get('currentProject').get('days').find(1)
+        # @set 'sidebarActiveDay', @get('currentProject').get('days').find(1)
 
         @render()
 
