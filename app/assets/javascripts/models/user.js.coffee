@@ -2,7 +2,7 @@ class BatmanRailsCheckin.User extends Batman.Model
   @hasMany 'checkins',
     autoload: false
 
-  @hasMany 'projects',
+  @belongsTo 'project',
     autoload: false
 
   @resourceName: 'user'
@@ -10,8 +10,10 @@ class BatmanRailsCheckin.User extends Batman.Model
 
   @persist Batman.RailsStorage
 
+  @urlNestsUnder 'project'
+
   # fields
-  @encode "email", "name", "password", "gravatar_url"
+  @encode "email", "name", "password", "gravatar_url", "project_id"
 
   @encode "latest_checkin",
     decode: (x) ->
@@ -21,7 +23,7 @@ class BatmanRailsCheckin.User extends Batman.Model
   @validate "email", presence: true
 
   @accessor 'route', ->
-    '/checkins/by_user/' + @get('id')
+      "projects/#{@get('project_id')}/checkins/by_user/#{@get('id')}"
 
   @accessor 'status', ->
     return "offline" if !@get('latest_checkin').get('created_at')

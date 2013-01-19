@@ -9,6 +9,7 @@ class DaysController < ApplicationController
 
     7.times do
       day = {
+        project_id: @project.id,
         date: date,
         checkin_count: Checkin.for_date(date, offset).where(project_id: @project.id).count,
       }
@@ -23,6 +24,7 @@ class DaysController < ApplicationController
     date = Date.parse(params[:date])
 
     day = {
+      project_id: @project.id,
       date: date,
       checkins: ActiveModel::ArraySerializer.new(Checkin.for_date(date).where(project_id: @project.id))
     }

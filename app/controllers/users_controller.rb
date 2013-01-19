@@ -12,7 +12,7 @@ class UsersController < ActionController::Base
   end
 
   def index
-    render json: User.all, each_serializer: UserListSerializer, root: "user", project_id: @project.id
+    render json: User.all, each_serializer: UserListSerializer, root: "users", project_id: @project.id
   end
 
   def show

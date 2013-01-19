@@ -4,7 +4,7 @@ class BatmanRailsCheckin.Project extends Batman.Model
     autoload: false
 
   @hasMany 'users',
-    autoload: false
+    autoload: true
 
   @hasMany 'days',
     autoload: false

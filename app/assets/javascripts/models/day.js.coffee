@@ -13,13 +13,13 @@ class BatmanRailsCheckin.Day extends Batman.Model
   @urlNestsUnder 'project'
 
   # fields
-  @encode "date", "checkin_count"
+  @encode "date", "checkin_count", "project_id"
 
   @accessor 'route', ->
     if @get('date') is moment().format('YYYY-MM-DD')
-      '/'
+      "projects/#{@get('project_id')}"
     else
-      '/checkins/by_date/' + @get('date')
+      "projects/#{@get('project_id')}/checkins/by_date/#{@get('date')}"
 
   @accessor 'date_pretty', ->
     switch @get('date')
