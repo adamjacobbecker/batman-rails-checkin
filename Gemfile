@@ -8,6 +8,8 @@ gem 'rails', '3.2.11'
 gem 'rails-api'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 gem 'redcarpet'
+gem 'oauth2'
+gem 'httparty'
 
 group :development, :test do
   gem 'ffaker'

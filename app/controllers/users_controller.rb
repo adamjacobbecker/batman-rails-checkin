@@ -18,28 +18,28 @@ class UsersController < ActionController::Base
     render json: user
   end
 
-  # used for logging in *and* account creation
-  def create
-    user = User.find_by_email(params[:user][:email].downcase)
+  def oauth
+    require 'oauth2'
 
-    if !user # sign up
-      user = User.new(params[:user])
+    client = OAuth2::Client.new(ENV['GITHUB_ID'],
+                                ENV['GITHUB_SECRET'],
+                                authorize_url: 'https://github.com/login/oauth/authorize',
+                                token_url: 'https://github.com/login/oauth/access_token')
 
-      if user.save
-        sign_in user
-      else
-        user = []
-      end
+    return redirect_to client.auth_code.authorize_url(redirect_uri: '') unless params[:code]
 
-    else # login
-      if user.authenticate(params[:user][:password])
-        sign_in user
-      else
-        user = []
-      end
-    end
+    token = client.auth_code.get_token(params[:code], redirect_uri: '')
 
-    render json: user
+    response = HTTParty.get("https://api.github.com/user?access_token=#{token.token}")
+
+    user = User.where(login: response["login"], access_token: token.token).first_or_create!(
+      name: response["name"],
+      email: response["email"]
+    )
+
+    sign_in(user)
+
+    redirect_to "/"
   end
 
   def destroy

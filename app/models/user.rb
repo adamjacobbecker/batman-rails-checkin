@@ -1,17 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password
-
-  has_secure_password
+  attr_accessible :email, :name, :login, :access_token
 
   has_many :checkins
 
   before_save { |user| user.email = email.downcase }
-  before_save :create_remember_token, if: :email_changed? or :password_changed?
+  before_create :create_remember_token
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 }, if: lambda{ new_record? || !password.nil? }
+  validates :login, presence: true, uniqueness: { case_sensitive: false }
 
   def latest_checkin
     checkins.order("created_at DESC").first

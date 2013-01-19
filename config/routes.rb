@@ -13,9 +13,12 @@ BatmanRailsCheckin::Application.routes.draw do
 
   resources :checkins, :except => :edit, :constraints => FormatTest.new(:json)
 
-  resources :users, :except => [:edit], :constraints => FormatTest.new(:json) do
+  resources :users, :except => [:edit, :create], :constraints => FormatTest.new(:json) do
     get 'current', on: :collection
   end
+
+  get 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)
+  post 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)
 
   get 'days', to: 'days#index', constraints: FormatTest.new(:json)
   get 'days/:date', to: 'days#show', constraints: FormatTest.new(:json)

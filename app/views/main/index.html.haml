@@ -21,7 +21,7 @@
 
           %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li
-              %a{:data => {bind: "window.BatmanRailsCheckin.currentUser.email | prepend 'logout '", |
+              %a{:data => {bind: "window.BatmanRailsCheckin.currentUser.name | prepend 'logout '", |
                           "route" => "routes.logout"}}
     #main.container
       .content

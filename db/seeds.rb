@@ -23,9 +23,9 @@ Y: refrigerator keeps falling through the wall
 get mother into a home
 END
 
-User.create(name: "Adam Becker", email: "ad@mbecker.cc", password: "password")
-User.create(name: "Tobias Funke", email: "tobias@gobiasindustries.com", password: "password")
-User.create(name: "Michael Bluth", email: "michael@bluthco.com", password: "password")
+User.create(name: "Adam Becker", email: "ad@mbecker.cc", login: "ajb")
+User.create(name: "Tobias Funke", email: "tobias@gobiasindustries.com", login: "analrapist")
+User.create(name: "Michael Bluth", email: "michael@bluthco.com", login: "mbluth")
 
 User.all.each do |user|
 

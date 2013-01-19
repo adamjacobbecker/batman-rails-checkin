@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116185246) do
+ActiveRecord::Schema.define(:version => 20130119003759) do
 
   create_table "checkins", :force => true do |t|
     t.text     "body"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20130116185246) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "name"
+    t.string   "login"
+    t.string   "access_token"
   end
 
 end
