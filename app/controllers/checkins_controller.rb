@@ -4,10 +4,14 @@ class CheckinsController < ActionController::Base
   before_filter :project_exists
 
   def index
+    checkins = @project.checkins
+
     if params[:user_id]
-      checkins = @project.checkins.where(user_id: params[:user_id])
-    else
-      checkins = @project.checkins.all
+      checkins = checkins.where(user_id: params[:user_id])
+    end
+
+    if params[:date]
+      checkins = checkins.for_date(Date.parse(params[:date]))
     end
 
     render json: checkins, each_serializer: CheckinListSerializer
