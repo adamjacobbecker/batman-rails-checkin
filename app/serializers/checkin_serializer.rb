@@ -1,5 +1,5 @@
 class CheckinSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :body, :body_html, :date, :created_at
+  attributes :id, :user_id, :project_id, :body, :body_html, :date, :created_at
 
   has_one :project
 
