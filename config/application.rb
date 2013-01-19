@@ -65,8 +65,6 @@ module BatmanRailsCheckin
         config.assets.js_compressor = Uglifier.new({mangle: false})
     end
 
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
-
     config.middleware.use ActionDispatch::Cookies
   end
 end

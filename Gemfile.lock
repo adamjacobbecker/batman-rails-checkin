@@ -59,6 +59,8 @@ GEM
     faraday (0.8.4)
       multipart-post (~> 1.1)
     ffaker (1.15.0)
+    font-awesome-rails (3.0.1.0)
+      railties (>= 3.1)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -148,6 +150,10 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    twitter-bootstrap-rails (2.2.0)
+      actionpack (>= 3.1)
+      execjs
+      railties (>= 3.1)
     tzinfo (0.3.35)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -162,6 +168,7 @@ DEPENDENCIES
   coffee-rails
   debugger
   ffaker
+  font-awesome-rails
   haml-rails
   haml_assets
   handlebars_assets
@@ -175,4 +182,5 @@ DEPENDENCIES
   redcarpet
   sqlite3
   stylus
+  twitter-bootstrap-rails
   uglifier

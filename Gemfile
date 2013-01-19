@@ -12,6 +12,8 @@ gem 'oauth2'
 gem 'httparty'
 gem 'haml-rails'
 gem 'haml_assets'
+gem 'twitter-bootstrap-rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'ffaker'

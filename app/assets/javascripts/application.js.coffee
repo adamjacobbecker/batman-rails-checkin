@@ -1,7 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require bootstrap
-#= require bootstrap_ujs
+#= require twitter/bootstrap
 #= require underscore
 #= require moment
 
