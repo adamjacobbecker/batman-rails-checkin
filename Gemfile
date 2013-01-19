@@ -11,6 +11,9 @@ gem 'redcarpet'
 gem 'oauth2'
 gem 'httparty'
 
+gem 'haml-rails'
+gem 'haml_assets'
+
 group :development, :test do
   gem 'ffaker'
   gem 'debugger'
@@ -25,8 +28,6 @@ group :assets do
   gem 'jquery-rails'
   gem 'stylus'
   gem 'coffee-rails'
-  gem 'haml-rails'
-  gem 'haml_assets'
   gem 'handlebars_assets'
 end
 
