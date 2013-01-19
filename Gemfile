@@ -10,6 +10,8 @@ gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 gem 'redcarpet'
 gem 'oauth2'
 gem 'httparty'
+gem 'haml-rails'
+gem 'haml_assets'
 
 group :development, :test do
   gem 'ffaker'
@@ -24,8 +26,6 @@ end
 group :assets do
   gem 'jquery-rails'
   gem 'stylus'
-  gem 'haml-rails'
-  gem 'haml_assets'
   gem 'coffee-rails'
   gem 'handlebars_assets'
   gem 'uglifier'
