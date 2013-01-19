@@ -1,5 +1,7 @@
 Batman.config =
   pathPrefix: '/'
+  viewPrefix: '/assets/views'
+  fetchRemoteViews: true
   usePushState: true
 
 Batman.mixin Batman.Filters,
@@ -9,8 +11,6 @@ Batman.mixin Batman.Filters,
 window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   @title = "Batman Rails Checkin"
-
-  Batman.ViewStore.prefix = 'assets/views'
 
   @root 'checkins#index'
 
