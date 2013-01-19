@@ -23,7 +23,7 @@ class BatmanRailsCheckin.User extends Batman.Model
   @validate "email", presence: true
 
   @accessor 'route', ->
-      "projects/#{@get('project_id')}/checkins/by_user/#{@get('id')}"
+      "/projects/#{@get('project_id')}/checkins/by_user/#{@get('id')}"
 
   @accessor 'status', ->
     return "offline" if !@get('latest_checkin').get('created_at')

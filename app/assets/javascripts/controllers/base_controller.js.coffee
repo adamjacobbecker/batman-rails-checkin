@@ -32,3 +32,22 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
         cb()
 
     return @render(false)
+
+  withProject: (project_id, cb) ->
+    project_id = parseInt(project_id)
+
+    if @get('project')?.get('id') is project_id then return cb()
+
+    BatmanRailsCheckin.Project.find project_id, (err, project) =>
+      @set 'project', project
+      BatmanRailsCheckin.set 'currentProjectId', project.get('id')
+      cb()
+
+    return @render(false)
+
+  switchViewByDateUser: ->
+    if @get('sidebarViewBy') is "date"
+      @set 'sidebarViewBy', "user"
+    else
+      @set 'sidebarViewBy', "date"
+

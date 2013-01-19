@@ -17,9 +17,9 @@ class BatmanRailsCheckin.Day extends Batman.Model
 
   @accessor 'route', ->
     if @get('date') is moment().format('YYYY-MM-DD')
-      "projects/#{@get('project_id')}"
+      "/projects/#{@get('project_id')}"
     else
-      "projects/#{@get('project_id')}/checkins/by_date/#{@get('date')}"
+      "/projects/#{@get('project_id')}/checkins/by_date/#{@get('date')}"
 
   @accessor 'date_pretty', ->
     switch @get('date')

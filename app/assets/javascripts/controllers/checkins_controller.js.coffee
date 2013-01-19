@@ -1,48 +1,32 @@
 class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseController
   routingKey: 'checkins'
 
-  withProject: (project_id, cb) ->
-    project_id = parseInt(project_id)
-
-    # if BatmanRailsCheckin.Project.get('all').indexedByUnique('id').get(project_id) then return cb()
-    BatmanRailsCheckin.Project.find project_id, (err, project) =>
-      @set 'currentProject', project
-      BatmanRailsCheckin.set 'currentProjectId', project.get('id')
-
-      if !@get('days') then project.get('days').load {offset: moment().zone()}, (err, days) =>
-        @set 'days', days
-
-      if !@get('users') then project.get('users').load (err, users) =>
-        @set 'users', users
-
-      cb()
-
   by_date: (params) ->
     @authenticated =>
       @withProject params.project_id, =>
         @set 'sidebarViewBy', 'date'
-        @set 'sidebarActiveUser', undefined
-        @set 'currentlyViewingBy', 'date'
+        @set 'checkinsViewBy', 'date'
+        @set 'dateId', params.date
+        @set 'userId', undefined
 
-        @get('currentProject').get('checkins').load {date: params.date || moment().format('YYYY-MM-DD')}, (err, checkins) =>
+        @get('project').get('checkins').load {date: params.date || moment().format('YYYY-MM-DD')}, (err, checkins) =>
           @set 'checkins', checkins
 
-        # @set 'sidebarActiveDay', @get('currentProject').get('days').find(1)
-
-        @render()
+        @render source: "shared/checkins"
 
   by_user: (params) ->
     @authenticated =>
-      @set 'sidebarViewBy', 'user'
-      @set 'sidebarActiveDay', undefined
-      @set 'currentlyViewingBy', 'user'
+      @withProject params.project_id, =>
+        @set 'sidebarViewBy', 'user'
+        @set 'checkinsViewBy', 'date'
+        @set 'dateId', undefined
+        @set 'userId', parseInt(params.user_id)
 
-      BatmanRailsCheckin.User.find parseInt(params.user_id), (err, user) =>
-        @set 'sidebarActiveUser', user
-        user.get('checkins').load (err, checkins) =>
-          @set 'checkins', checkins
+        BatmanRailsCheckin.Checkin.load {project_id: @get('project').get('id'), user_id: parseInt(params.user_id)}, (err, checkins) =>
+          console.log checkins
+          @get('project').set 'checkins', checkins
 
-      @render source: "checkins/by_date"
+        @render source: "shared/checkins"
 
   show: (params) ->
     @authenticated =>
@@ -115,11 +99,3 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
     @get('checkins').remove(context.get('checkin'))
     BatmanRailsCheckin.flashSuccess "Checkin deleted successfully!"
 
-
-  switchViewByDateUser: ->
-    if @get('sidebarViewBy') is "date"
-      @set 'sidebarViewBy', "user"
-      BatmanRailsCheckin.get('preferences').updateAttributes({sidebarViewBy: 'user'}).save()
-    else
-      @set 'sidebarViewBy', "date"
-      BatmanRailsCheckin.get('preferences').updateAttributes({sidebarViewBy: 'date'}).save()

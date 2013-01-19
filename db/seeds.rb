@@ -9,18 +9,20 @@
 require 'ffaker'
 
 def checkin_body(project_name)
-  "#### Get Done
-  repair banana stand for #{project_name}
-  find company checkbook
+"
+#### Get Done
+repair banana stand for #{project_name}
+find company checkbook
 
-  #### Got Done
-  rocked karaoke with maeby
+#### Got Done
+rocked karaoke with maeby
 
-  #### Flags
-  Y: refrigerator keeps falling through the wall
+#### Flags
+Y: refrigerator keeps falling through the wall
 
-  #### Shelf
-  get mother into a home"
+#### Shelf
+get mother into a home
+"
 end
 
 User.create(name: "Adam Becker", email: "ad@mbecker.cc", login: "ajb")

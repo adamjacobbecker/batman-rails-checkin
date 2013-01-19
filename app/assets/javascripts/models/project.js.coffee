@@ -3,11 +3,9 @@ class BatmanRailsCheckin.Project extends Batman.Model
     saveInline: false
     autoload: false
 
-  @hasMany 'users',
-    autoload: true
+  @hasMany 'users'
 
-  @hasMany 'days',
-    autoload: false
+  @hasMany 'days'
 
   @resourceName: 'project'
   @storageKey: 'projects'

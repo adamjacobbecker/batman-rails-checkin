@@ -8,14 +8,18 @@ Batman.mixin Batman.Filters,
   momentFormatDateVerbose: (value) ->
     moment(value).format("\\a\\t h:mma \\o\\n M/D/YY")
 
+  momentFormatDate: (value) ->
+    moment(value).format("M/D/YY")
+
 window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   @title = "Batman Rails Checkin"
 
   @root 'checkins#index'
 
-  @route '/projects/:project_id', 'checkins#by_date'
-  @route '/projects/:project_id/checkins/new', 'checkins#new'
+  @resources 'projects'
+  # @route '/', 'checkins#by_date'
+  # @route '/projects/:project_id/checkins/new', 'checkins#new'
   @route '/projects/:project_id/checkins/by_date/:date', 'checkins#by_date'
   @route '/projects/:project_id/checkins/by_user/:user_id', 'checkins#by_user'
 
