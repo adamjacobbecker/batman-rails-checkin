@@ -11,17 +11,19 @@ BatmanRailsCheckin::Application.routes.draw do
     end
   end
 
-  resources :checkins, :except => :edit, :constraints => FormatTest.new(:json)
+  resources :projects, except: :edit, :constraints => FormatTest.new(:json) do
+    resources :checkins, :except => :edit, :constraints => FormatTest.new(:json)
+    resources :users, only: [:index, :show], :constraints => FormatTest.new(:json)
 
-  resources :users, :except => [:edit, :create], :constraints => FormatTest.new(:json) do
-    get 'current', on: :collection
+    get 'days', to: 'days#index', constraints: FormatTest.new(:json)
+    get 'days/:date', to: 'days#show', constraints: FormatTest.new(:json)
   end
 
+  resources :users, only: :destroy, :constraints => FormatTest.new(:json)
+
+  get 'users/current', to: 'users#current', constraints: FormatTest.new(:json)
   get 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)
   post 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)
-
-  get 'days', to: 'days#index', constraints: FormatTest.new(:json)
-  get 'days/:date', to: 'days#show', constraints: FormatTest.new(:json)
 
   get '/*foo', :to => 'main#index', :constraints => FormatTest.new(:html)
   get '/', :to => 'main#index', :constraints => FormatTest.new(:html)

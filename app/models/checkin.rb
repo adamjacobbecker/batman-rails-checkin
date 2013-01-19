@@ -2,6 +2,7 @@ class Checkin < ActiveRecord::Base
   attr_accessible :body, :date
 
   belongs_to :user
+  belongs_to :project
 
   default_scope order('created_at DESC')
 

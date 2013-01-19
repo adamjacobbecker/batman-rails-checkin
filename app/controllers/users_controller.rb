@@ -1,6 +1,8 @@
 class UsersController < ActionController::Base
   include UsersHelper
 
+  before_filter :project_exists, only: [:index, :show]
+
   def current
     if signed_in?
       render json: current_user, serializer: UserListSerializer, root: "user"
@@ -10,12 +12,12 @@ class UsersController < ActionController::Base
   end
 
   def index
-    render json: User.all, each_serializer: UserListSerializer
+    render json: User.all, each_serializer: UserListSerializer, root: "user", project_id: @project.id
   end
 
   def show
     user = User.find params[:id]
-    render json: user
+    render json: user, serializer: UserListSerializer, project_id: @project.id
   end
 
   def oauth
@@ -45,5 +47,11 @@ class UsersController < ActionController::Base
   def destroy
     sign_out
     render json: {status: "signed out"}
+  end
+
+  private
+
+  def project_exists
+    @project = Project.find params[:project_id]
   end
 end

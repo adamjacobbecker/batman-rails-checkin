@@ -27,16 +27,25 @@ User.create(name: "Adam Becker", email: "ad@mbecker.cc", login: "ajb")
 User.create(name: "Tobias Funke", email: "tobias@gobiasindustries.com", login: "analrapist")
 User.create(name: "Michael Bluth", email: "michael@bluthco.com", login: "mbluth")
 
-User.all.each do |user|
+Project.create(name: "Bluth Company")
+Project.create(name: "Gobias Industries")
 
-  date = Date.current
+Project.all.each do |project|
+  project.users << User.all
 
-  10.times do
-    break if rand(1..5) == 1
-    checkin = user.checkins.build body: checkin_body
-    checkin.created_at = date.to_time
-    checkin.save
-    date = date - 1.day
+  User.all.each do |user|
+
+    date = Date.current
+
+    10.times do
+      break if rand(1..5) == 1
+      checkin = user.checkins.build body: checkin_body
+      checkin.project_id = project.id
+      checkin.created_at = date.to_time
+      checkin.save
+      date = date - 1.day
+    end
+
   end
-
 end
+
