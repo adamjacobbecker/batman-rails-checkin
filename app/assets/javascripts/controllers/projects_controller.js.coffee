@@ -11,6 +11,7 @@ class BatmanRailsCheckin.ProjectsController extends BatmanRailsCheckin.BaseContr
         @render source: "shared/checkins"
 
 
+
   # by_date: (params) ->
   #   @authenticated =>
   #     @withProject params.project_id, =>

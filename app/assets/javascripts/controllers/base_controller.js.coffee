@@ -35,10 +35,14 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
   withProject: (project_id, cb) ->
     project_id = parseInt(project_id)
 
-    BatmanRailsCheckin.Project.find project_id, (err, project) =>
-      @set 'project', project
-      BatmanRailsCheckin.set 'currentProjectId', project.get('id')
+    if @get('project')?.get('id') is project_id
       cb()
+
+    else
+      BatmanRailsCheckin.Project.find project_id, (err, project) =>
+        @set 'project', project
+        BatmanRailsCheckin.set 'currentProjectId', project.get('id')
+        cb()
 
     return @render(false)
 
