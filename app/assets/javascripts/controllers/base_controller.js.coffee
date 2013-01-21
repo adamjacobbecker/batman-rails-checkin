@@ -67,7 +67,7 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
 
   createProject: (node, event, context) ->
     @get('newProject').save (err, project) =>
-      @redirect project
+      @redirect "/projects/#{project.get('id')}/users"
       project.get('users').load ->
       @unset('isAddingProject')
       @set 'newProject', new BatmanRailsCheckin.Project()
