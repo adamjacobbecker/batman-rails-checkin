@@ -5,8 +5,6 @@ class BatmanRailsCheckin.Project extends Batman.Model
 
   @hasMany 'users'
 
-  @hasMany 'days'
-
   @resourceName: 'project'
   @storageKey: 'projects'
 

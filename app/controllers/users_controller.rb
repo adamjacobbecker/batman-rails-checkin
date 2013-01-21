@@ -16,8 +16,8 @@ class UsersController < ActionController::Base
   end
 
   def show
-    user = User.find params[:id]
-    render json: user, serializer: UserListSerializer, project_id: @project.id
+    user = User.find params[:id].split("_")[0]
+    render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
   end
 
   def oauth

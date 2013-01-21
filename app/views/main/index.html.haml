@@ -17,7 +17,7 @@
           %ul.nav{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li{:data => {"foreach-project" => "window.BatmanRailsCheckin.Project.all", |
                 "addclass-active" => "window.BatmanRailsCheckin.currentProjectId | equals project.id"}}
-              %a{:data => {"bind" => "project.name", "route" => "project.route"}}
+              %a{:data => {"bind" => "project.name", "route" => "routes.projects[project]"}}
 
           %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li

@@ -4,12 +4,8 @@ class BatmanRailsCheckin.ProjectsController extends BatmanRailsCheckin.BaseContr
   show: (params) ->
     @authenticated =>
       @withProject params.id, =>
-        @set 'sidebarViewBy', 'date'
-        @set 'checkinsViewBy', 'date'
-        @set 'dateId', moment().format('YYYY-MM-DD')
-        @set 'userId', undefined
 
-        @get('project').get('checkins').load {date: params.date || moment().format('YYYY-MM-DD')}, (err, checkins) =>
+        @get('project').get('checkins').load (err, checkins) =>
           @set 'checkins', checkins
 
         @render source: "shared/checkins"

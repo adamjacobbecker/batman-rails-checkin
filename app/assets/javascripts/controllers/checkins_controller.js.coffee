@@ -1,32 +1,6 @@
 class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseController
   routingKey: 'checkins'
 
-  by_date: (params) ->
-    @authenticated =>
-      @withProject params.project_id, =>
-        @set 'sidebarViewBy', 'date'
-        @set 'checkinsViewBy', 'date'
-        @set 'dateId', params.date
-        @set 'userId', undefined
-
-        @get('project').get('checkins').load {date: params.date || moment().format('YYYY-MM-DD')}, (err, checkins) =>
-          @set 'checkins', checkins
-
-        @render source: "shared/checkins"
-
-  by_user: (params) ->
-    @authenticated =>
-      @withProject params.project_id, =>
-        @set 'sidebarViewBy', 'user'
-        @set 'checkinsViewBy', 'date'
-        @set 'dateId', undefined
-        @set 'userId', parseInt(params.user_id)
-
-        BatmanRailsCheckin.Checkin.load {project_id: @get('project').get('id'), user_id: parseInt(params.user_id)}, (err, checkins) =>
-          console.log checkins
-          @get('project').set 'checkins', checkins
-
-        @render source: "shared/checkins"
 
   show: (params) ->
     @authenticated =>

@@ -3,10 +3,6 @@
     %div{"data-partial" => "main/_sidebar"}
 
   .fixed-sidebar
-    %h5.currently-viewing-by{"data-showif" => "currentlyViewingBy | matches \"date\""}
-      Checkins for <span data-bind="sidebarActiveDate | momentFormatDate"></span>
-    %h5.currently-viewing-by{"data-showif" => "currentlyViewingBy | matches \"user\""}
-      Checkins from <span data-bind="sidebarActiveUser.name"></span>
     %a.btn.btn-success.post-checkin-button{"data-route" => "currentProject.newCheckinRoute"}
       %i.icon-bullhorn
       Post Checkin

@@ -15,14 +15,11 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   @title = "Batman Rails Checkin"
 
-  @root 'checkins#index'
+  @root 'main#index'
 
-  @resources 'projects'
-  # @route '/', 'checkins#by_date'
-  # @route '/projects/:project_id/checkins/new', 'checkins#new'
-  @route '/projects/:project_id/checkins/by_date/:date', 'checkins#by_date'
-  @route '/projects/:project_id/checkins/by_user/:user_id', 'checkins#by_user'
-
+  @resources 'projects', ->
+    @resources 'checkins'
+    @resources 'users'
 
   @route '/login', 'main#login'
   @route '/logout', 'main#logout'

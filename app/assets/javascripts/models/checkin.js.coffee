@@ -10,6 +10,8 @@ class BatmanRailsCheckin.Checkin extends Batman.Model
 
   @persist Batman.RailsStorage
 
+  @urlNestsUnder 'project'
+
   # fields
   @encode "body", "body_html", "date", "date_slashes", "date_pretty", "time_pretty",
 

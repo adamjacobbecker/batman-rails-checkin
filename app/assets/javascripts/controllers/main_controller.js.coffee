@@ -27,6 +27,10 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
 
     @render(false)
 
+  index: (params) ->
+    @authenticated =>
+      @render()
+
   # show: (params) ->
   #   @set 'checkin', BatmanRailsCheckin.Checkin.find parseInt(params.id, 10), (err) ->
   #     throw err if err
