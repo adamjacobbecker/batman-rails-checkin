@@ -9,30 +9,31 @@
       = javascript_include_tag "application"
       = csrf_meta_tags
   %body
-    .navbar.navbar-fixed-top.navbar-inverse
+    .navbar.navbar-fixed-top
       .navbar-inner
         .container
           %a.brand{"data-route" => "'/'"}
             Batman Rails Checkin
-          %ul.nav{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
-            %li{:data => {"foreach-navproject" => "window.BatmanRailsCheckin.Project.all", |
-                "addclass-active" => "window.BatmanRailsCheckin.currentProjectId | equals navproject.id"}}
-              %a{:data => {"bind" => "navproject.name", "route" => "routes.projects[navproject].users"}}
+          .nav-collapse
+            %ul.nav{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
+              %li{:data => {"foreach-navproject" => "window.BatmanRailsCheckin.Project.all", |
+                  "addclass-active" => "window.BatmanRailsCheckin.currentProjectId | equals navproject.id"}}
+                %a{:data => {"bind" => "navproject.name", "route" => "routes.projects[navproject].users"}}
 
-            %li{"data-hideif" => "controllers.base.isAddingProject"}
-              %a{"data-event-click" => "controllers.base.toggleIsAddingProject"} New Project...
+              %li{"data-hideif" => "controllers.base.isAddingProject"}
+                %a{"data-event-click" => "controllers.base.toggleIsAddingProject"} New Project...
 
-            %li.new-project-li{"data-showif" => "controllers.base.isAddingProject", "data-view" => "AddProjectFormView", |
-                               style: "display: none;"}
-              %form{"accept-charset" => "UTF-8", "data-event-submit" => "controllers.base.createProject", "data-formfor-project" => "controllers.base.newProject"}
-                %input.span2{type: "text", placeholder: "Project name", "data-bind" => "project.name", name: "project[:name]"}
-                %button.btn.btn-success Create Project
-                %a.btn{"data-event-click" => "controllers.base.toggleIsAddingProject"} &times;
+              %li.new-project-li{"data-showif" => "controllers.base.isAddingProject", "data-view" => "AddProjectFormView", |
+                                 style: "display: none;"}
+                %form{"accept-charset" => "UTF-8", "data-event-submit" => "controllers.base.createProject", "data-formfor-project" => "controllers.base.newProject"}
+                  %input.span2{type: "text", placeholder: "Project name", "data-bind" => "project.name", name: "project[:name]"}
+                  %button.btn.btn-success Create Project
+                  %a.btn{"data-event-click" => "controllers.base.toggleIsAddingProject"} &times;
 
-          %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
-            %li
-              %a{:data => {bind: "window.BatmanRailsCheckin.currentUser.name | prepend 'logout '", |
-                          "route" => "routes.logout"}}
+            %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
+              %li
+                %a{:data => {bind: "window.BatmanRailsCheckin.currentUser.name | prepend 'logout '", |
+                            "route" => "routes.logout"}}
     #main.container
       .content
         %p#flashnotice.alert.alert-overlay.alert-success{:data => {"showif" => "window.BatmanRailsCheckin.flash.success.length"}}
