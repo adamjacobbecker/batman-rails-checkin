@@ -8,9 +8,7 @@ class BatmanRailsCheckin.UsersController extends BatmanRailsCheckin.BaseControll
         user = new BatmanRailsCheckin.User {id: params.id, project_id: params.projectId}
         user.load (err, user) =>
           @set 'user', user
-
-          user.get('checkins').load (err, checkins) =>
-            @set 'checkins', checkins
+          @set 'checkins', user.get('checkins')
 
         @render source: "shared/checkins"
 
