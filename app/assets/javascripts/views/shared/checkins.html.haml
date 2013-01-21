@@ -1,6 +1,14 @@
 .row-fluid#main-row
   .span3.sidebar-nav-fixed
-    %div{"data-partial" => "main/_sidebar"}
+    .above-sidebar
+      %h4
+        %span{"data-bind" => "project.name"}
+        %small
+          %a{"data-event-click" => "toggleIsViewingSettings"}
+            %span{"data-hideif" => "isViewingSettings"} settings
+            %span{"data-showif" => "isViewingSettings"} users
+    %div{"data-partial" => "main/_sidebar", "data-hideif" => "isViewingSettings"}
+    %div{"data-partial" => "main/_projectSettings", "data-showif" => "isViewingSettings"}
 
   .fixed-sidebar
     %a.btn.btn-success.post-checkin-button{"data-route" => "routes.projects[project].checkins.new"}

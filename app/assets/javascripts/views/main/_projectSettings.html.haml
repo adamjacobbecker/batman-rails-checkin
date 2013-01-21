@@ -1,0 +1,7 @@
+%form{"accept-charset" => "UTF-8", "data-event-input" => "updateProjectSettings", |
+      "data-event-submit" => "updateProjectSettingsAndToggleIsViewingSettings", |
+      "data-formfor-project" => "project"}
+  %label Project Name
+  %input{type: "text", placeholder: "Project name", "data-bind" => "project.name", name: "project[:name]"}
+  .form-actions
+    %button.btn.btn-success Save

@@ -69,4 +69,20 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     else
       @set 'isAddingProject', true
 
+  toggleIsViewingSettings: (node, event, context) ->
+    if @get('isViewingSettings')?
+      @unset('isViewingSettings')
+    else
+      @set 'isViewingSettings', true
 
+  updateProjectSettings: ->
+    @updateProjectTimeout ||= setTimeout =>
+      @get('project').save (err) =>
+        @updateProjectTimeout = undefined
+    , 500
+
+  updateProjectSettingsAndToggleIsViewingSettings: ->
+    @updateProjectSettings()
+    @toggleIsViewingSettings()
+    # @get('project').save (err, project) ->
+    #   console.log project

@@ -3,7 +3,7 @@
     %form#new_checkin.new_checkin{"accept-charset" => "UTF-8", "data-event-submit" => "create", "data-formfor-checkin" => "checkin"}
       %fieldset
         %legend
-          %span{"data-hideif" => "checkin.id"} New Checkin
+          %span{"data-hideif" => "checkin.id"} Checking in for <span data-bind="project.name"></span>
           %span{"data-showif" => "checkin.id"} Edit Checkin
         #error-explanation.alert-message.block-message.error{"data-showif" => "checkin.errors.length"}
           %p

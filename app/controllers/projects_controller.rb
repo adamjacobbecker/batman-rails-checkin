@@ -11,6 +11,12 @@ class ProjectsController < ActionController::Base
     render json: project
   end
 
+  def update
+    project = current_user.projects.find params[:id]
+    project.update_attributes params[:project]
+    render json: project
+  end
+
   def show
     project = current_user.projects.find params[:id]
     render json: project
