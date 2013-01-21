@@ -52,7 +52,8 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
 
     return @render(false)
 
-  createCollaborator: ->
+  createCollaborator: (node) ->
+    @get('newCollaborator').set 'email', $(node).find('input').val() # hack for typeahead not updating
     @get('newCollaborator').save (err) =>
       @set 'newCollaborator', new BatmanRailsCheckin.User {project_id: @get('project').get('id')}
 

@@ -18,6 +18,7 @@ BatmanRailsCheckin::Application.routes.draw do
   end
 
   delete 'users', to: 'users#destroy', :constraints => FormatTest.new(:json)
+  get 'users/typeahead', to: 'users#typeahead', constraints: FormatTest.new(:json)
   get 'users/current', to: 'users#current', constraints: FormatTest.new(:json)
   get 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)
   post 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)

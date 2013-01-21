@@ -55,6 +55,10 @@ class UsersController < ActionController::Base
     render json: {status: "signed out"}
   end
 
+  def typeahead
+    render json: User.where("email LIKE :query", query: "%#{params[:query]}%").pluck("email")
+  end
+
   private
 
   def project_exists
