@@ -2,6 +2,20 @@
       "data-event-submit" => "updateProjectSettingsAndToggleIsViewingSettings", |
       "data-formfor-project" => "project"}
   %label Project Name
-  %input{type: "text", placeholder: "Project name", "data-bind" => "project.name", name: "project[:name]"}
+  %input{type: "text", "data-bind" => "project.name", name: "project[:name]"}
+
+  %label Campfire Subdomain
+  %input{type: "text", "data-bind" => "project.campfire_subdomain", name: "project[:campfire_subdomain]"}
+
+  %label Campfire Token
+  %input{type: "text", "data-bind" => "project.campfire_token", name: "project[:campfire_token]"}
+
+  %label Campfire Room Name
+  %input{type: "text", "data-bind" => "project.campfire_room", name: "project[:campfire_room]"}
+
   .form-actions
     %button.btn.btn-success Save
+
+
+  %div{"data-showif" => "project.owner_id | equals currentUser.user_id"}
+    %a{"data-event-click" => "deleteProject"} Delete project

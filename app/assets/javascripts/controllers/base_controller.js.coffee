@@ -42,6 +42,7 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
       cb()
 
     else
+      @unset('isViewingSettings')
       @unset 'checkins'
       BatmanRailsCheckin.Project.find project_id, (err, project) =>
         @set 'project', project
@@ -84,5 +85,8 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
   updateProjectSettingsAndToggleIsViewingSettings: ->
     @updateProjectSettings()
     @toggleIsViewingSettings()
-    # @get('project').save (err, project) ->
-    #   console.log project
+
+  deleteProject: ->
+    return unless confirm "Are you sure you want to delete this project?"
+    @get('project').destroy (err) =>
+      @redirect "/"

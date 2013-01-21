@@ -5,8 +5,8 @@
         %span{"data-bind" => "project.name"}
         %small
           %a{"data-event-click" => "toggleIsViewingSettings"}
-            %span{"data-hideif" => "isViewingSettings"} settings
-            %span{"data-showif" => "isViewingSettings"} users
+            %span{"data-hideif" => "isViewingSettings"} settings &rarr;
+            %span{"data-showif" => "isViewingSettings"} &larr; users
     %div{"data-partial" => "main/_sidebar", "data-hideif" => "isViewingSettings"}
     %div{"data-partial" => "main/_projectSettings", "data-showif" => "isViewingSettings"}
 
