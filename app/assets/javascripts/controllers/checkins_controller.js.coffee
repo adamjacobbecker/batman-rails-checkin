@@ -50,7 +50,7 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
         else
           BatmanRailsCheckin.flashSuccess "Checkin created successfully!"
           @get('project').get('users').load ->
-          @redirect @get('project')
+          @redirect "/projects/#{@get('project').get('id')}/users"
 
   edit: (params) ->
     @authenticated =>
