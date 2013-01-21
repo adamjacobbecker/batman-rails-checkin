@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :login, :access_token
 
+  default_scope order("name")
+
   has_many :checkins
   has_and_belongs_to_many :projects
 
