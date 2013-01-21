@@ -17,7 +17,7 @@ BatmanRailsCheckin::Application.routes.draw do
     resources :users, only: [:index, :show], :constraints => FormatTest.new(:json)
   end
 
-  resources :users, only: :destroy, :constraints => FormatTest.new(:json)
+  delete 'users', to: 'users#destroy', :constraints => FormatTest.new(:json)
   get 'users/current', to: 'users#current', constraints: FormatTest.new(:json)
   get 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)
   post 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)
