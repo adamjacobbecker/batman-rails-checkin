@@ -1,6 +1,6 @@
 %ul.nav.nav-list.nav-list-bordered.user-list
   %li{"data-removeclass-active" => "user"}
-    %a{"data-route" => "routes.projects[project]"}
+    %a{"data-route" => "routes.projects[project].users"}
       All Users
       %i.icon-chevron-right.view-icon
   %li{"data-foreach-sidebaruser" => "project.users", "data-addclass-active" => "user.id | equals sidebaruser.id"}

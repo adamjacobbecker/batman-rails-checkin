@@ -17,7 +17,7 @@
           %ul.nav{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li{:data => {"foreach-navproject" => "window.BatmanRailsCheckin.Project.all", |
                 "addclass-active" => "window.BatmanRailsCheckin.currentProjectId | equals navproject.id"}}
-              %a{:data => {"bind" => "navproject.name", "route" => "routes.projects[navproject]"}}
+              %a{:data => {"bind" => "navproject.name", "route" => "routes.projects[navproject].users"}}
 
             %li{"data-hideif" => "controllers.base.isAddingProject"}
               %a{"data-event-click" => "controllers.base.toggleIsAddingProject"} New Project...
