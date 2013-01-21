@@ -1,9 +1,8 @@
 class BatmanRailsCheckin.BaseController extends Batman.Controller
 
   @beforeFilter ->
-    BatmanRailsCheckin.set 'pageTitle', undefined
+    BatmanRailsCheckin.unset 'pageTitle'
     @set 'projects', BatmanRailsCheckin.Project.get('all')
-
 
   authenticated: (cb) ->
     return cb() if BatmanRailsCheckin.currentUser
@@ -35,8 +34,6 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
 
   withProject: (project_id, cb) ->
     project_id = parseInt(project_id)
-
-    if @get('project')?.get('id') is project_id then return cb()
 
     BatmanRailsCheckin.Project.find project_id, (err, project) =>
       @set 'project', project

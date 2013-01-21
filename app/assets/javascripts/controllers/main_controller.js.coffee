@@ -22,13 +22,15 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
 
   logout: ->
     BatmanRailsCheckin.currentUser.destroy (err) =>
-      BatmanRailsCheckin.set 'currentUser', undefined
+      BatmanRailsCheckin.unset 'currentUser'
       @redirect '/login'
 
     @render(false)
 
   index: (params) ->
     @authenticated =>
+      @unset 'project'
+      BatmanRailsCheckin.unset 'currentProjectId'
       @render()
 
   # show: (params) ->

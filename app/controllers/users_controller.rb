@@ -12,11 +12,11 @@ class UsersController < ActionController::Base
   end
 
   def index
-    render json: User.all, each_serializer: UserListSerializer, root: "users", project_id: @project.id
+    render json: @project.users.all, each_serializer: UserListSerializer, root: "users", project_id: @project.id
   end
 
   def show
-    user = User.find params[:id].split("_")[0]
+    user = @project.users.find params[:id].split("_")[0]
     render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
   end
 
