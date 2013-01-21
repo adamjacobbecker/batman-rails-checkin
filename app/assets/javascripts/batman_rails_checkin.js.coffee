@@ -55,9 +55,3 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
     set: (k, v) ->
       @[k] = v
-
-  @toggleIsAddingProject: (node, event, context) ->
-    if @get('isAddingProject')?
-      @unset('isAddingProject')
-    else
-      @set 'isAddingProject', true

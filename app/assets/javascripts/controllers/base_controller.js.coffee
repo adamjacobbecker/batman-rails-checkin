@@ -4,8 +4,8 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     BatmanRailsCheckin.unset 'pageTitle'
     @set 'projects', BatmanRailsCheckin.Project.get('all')
 
-    if !BatmanRailsCheckin.get('newProject')
-      BatmanRailsCheckin.set 'newProject', new BatmanRailsCheckin.Project()
+    if !BatmanRailsCheckin.get('controllers').get('base').get('newProject')
+      BatmanRailsCheckin.get('controllers').get('base').set 'newProject', new BatmanRailsCheckin.Project()
 
   authenticated: (cb) ->
     return cb() if BatmanRailsCheckin.currentUser
@@ -58,9 +58,15 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
           throw err unless err instanceof Batman.ErrorsSet
 
   createProject: (node, event, context) ->
-    alert 'hi'
-    # @get('newProject').save (err, project) =>
-    #   console.log project
-    #   context.redirect project
+    @get('newProject').save (err, project) =>
+      @redirect project
+      project.get('users').load ->
+      @unset('isAddingProject')
+
+  toggleIsAddingProject: (node, event, context) ->
+    if @get('isAddingProject')?
+      @unset('isAddingProject')
+    else
+      @set 'isAddingProject', true
 
 

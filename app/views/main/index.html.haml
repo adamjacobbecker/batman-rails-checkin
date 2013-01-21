@@ -19,15 +19,15 @@
                 "addclass-active" => "window.BatmanRailsCheckin.currentProjectId | equals navproject.id"}}
               %a{:data => {"bind" => "navproject.name", "route" => "routes.projects[navproject]"}}
 
-            %li{"data-hideif" => "window.BatmanRailsCheckin.isAddingProject"}
-              %a{"data-event-click" => "toggleIsAddingProject"} New Project...
+            %li{"data-hideif" => "controllers.base.isAddingProject"}
+              %a{"data-event-click" => "controllers.base.toggleIsAddingProject"} New Project...
 
-            %li.new-project-li{"data-showif" => "window.BatmanRailsCheckin.isAddingProject", "data-view" => "AddProjectFormView", |
+            %li.new-project-li{"data-showif" => "controllers.base.isAddingProject", "data-view" => "AddProjectFormView", |
                                style: "display: none;"}
-              %form{"accept-charset" => "UTF-8", "data-event-submit" => "controllers.base.createProject", "data-formfor-project" => "newProject"}
+              %form{"accept-charset" => "UTF-8", "data-event-submit" => "controllers.base.createProject", "data-formfor-project" => "controllers.base.newProject"}
                 %input.span2{type: "text", placeholder: "Project name", "data-bind" => "project.name", name: "project[:name]"}
                 %button.btn.btn-success Create Project
-                %a.btn{"data-event-click" => "toggleIsAddingProject"} &times;
+                %a.btn{"data-event-click" => "controllers.base.toggleIsAddingProject"} &times;
 
           %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li
