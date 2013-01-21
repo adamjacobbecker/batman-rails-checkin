@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   default_scope order("name")
 
   has_many :checkins
-  has_and_belongs_to_many :projects
+  has_and_belongs_to_many :projects, uniq: true
 
   before_save { |user| user.email = email.downcase }
   before_create :create_remember_token

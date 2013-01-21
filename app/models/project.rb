@@ -4,5 +4,5 @@ class Project < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
 
   has_many :checkins
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :users, uniq: true
 end
