@@ -44,7 +44,7 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
 
   # not routable, an event
   destroyCheckin: (node, event, context) ->
-    $(node).closest(".checkin").fadeOut 400, ->
+    $(node).closest(".checkin-wrapper").fadeOut 400, ->
       context.get('checkin').destroy (err) =>
         if err
           throw err unless err instanceof Batman.ErrorsSet
