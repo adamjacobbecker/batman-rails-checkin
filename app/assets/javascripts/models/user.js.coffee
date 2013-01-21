@@ -15,7 +15,7 @@ class BatmanRailsCheckin.User extends Batman.Model
   @urlNestsUnder 'project'
 
   # fields
-  @encode "email", "name", "password", "gravatar_url", "project_id"
+  @encode "user_id", "email", "name", "password", "gravatar_url", "project_id"
 
   @encode "latest_checkin",
     decode: (x) ->

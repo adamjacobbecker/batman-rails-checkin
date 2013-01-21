@@ -12,24 +12,33 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
 
   new: (params) ->
     @authenticated =>
-      BatmanRailsCheckin.set 'pageTitle', 'New Checkin'
-      @set 'checkin', new BatmanRailsCheckin.Checkin
-        user_id: BatmanRailsCheckin.get('currentUser').get('id')
-        created_at: new Date().toISOString()
-        body: """
-          #### Get Done
+      @withProject params.projectId, =>
+        BatmanRailsCheckin.set 'pageTitle', 'New Checkin'
+        @set 'checkin', new BatmanRailsCheckin.Checkin
+          project_id: params.projectId
+          user_id: BatmanRailsCheckin.get('currentUser').get('id')
+          created_at: new Date().toISOString()
+          body: """
+            #### Get Done
 
 
-          #### Got Done
+            #### Got Done
 
 
-          #### Flags
+            #### Flags
 
 
-          #### Shelf
+            #### Shelf
 
-        """
-      @form = @render()
+          """
+
+        @unset 'latest_checkin'
+
+        myUserForThisProject = new BatmanRailsCheckin.User(projects_users_id: "" + BatmanRailsCheckin.get('currentUser').get('user_id') + "_" + params.projectId, project_id: params.projectId)
+        myUserForThisProject.load (err, user) =>
+          @set 'latest_checkin', user.get('checkins').get('first')
+
+        @form = @render()
 
   create: (params) ->
     @authenticated =>
@@ -40,7 +49,8 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
           throw err unless err instanceof Batman.ErrorsSet
         else
           BatmanRailsCheckin.flashSuccess "Checkin created successfully!"
-          @redirect '/'
+          @get('project').get('users').load ->
+          @redirect @get('project')
 
   edit: (params) ->
     @authenticated =>
@@ -59,16 +69,6 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
         else
           BatmanRailsCheckin.flashSuccess "Checkin updated successfully!"
           @redirect '/checkins'
-
-  # not routable, an event
-  destroy: (node, event, context) ->
-    context.get('checkin').destroy (err) =>
-      if err
-        throw err unless err instanceof Batman.ErrorsSet
-
-    _.find( @get('days'), (day) ->
-      context.get('checkin').get('date') is day.get('date')
-    ).decrementCheckinCount()
 
     @get('checkins').remove(context.get('checkin'))
     BatmanRailsCheckin.flashSuccess "Checkin deleted successfully!"

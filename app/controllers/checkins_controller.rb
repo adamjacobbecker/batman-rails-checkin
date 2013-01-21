@@ -38,7 +38,9 @@ class CheckinsController < ActionController::Base
   def create
     params[:checkin].delete(:user_id)
     params[:checkin].delete(:created_at)
+    params[:checkin].delete(:project_id)
     checkin = current_user.checkins.build(params[:checkin])
+    checkin.project_id = @project.id
     checkin.save
     render json: checkin
   end

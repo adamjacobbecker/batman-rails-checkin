@@ -5,7 +5,7 @@ class UsersController < ActionController::Base
 
   def current
     if signed_in?
-      render json: current_user, serializer: UserListSerializer, root: "user"
+      render json: current_user, serializer: UserSerializer, root: "user"
     else
       render json: {status: "not logged in"}, status: 401
     end

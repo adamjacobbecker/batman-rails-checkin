@@ -1,5 +1,9 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :name, :login, :gravatar_url, :project_id, :projects_users_id
+  attributes :id, :user_id, :email, :name, :login, :gravatar_url, :project_id, :projects_users_id
+
+  def user_id
+    object.id
+  end
 
   def project_id
     @options[:project_id]

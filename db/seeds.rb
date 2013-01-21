@@ -25,7 +25,6 @@ get mother into a home
 "
 end
 
-User.create(name: "Adam Becker", email: "ad@mbecker.cc", login: "ajb")
 User.create(name: "Tobias Funke", email: "tobias@gobiasindustries.com", login: "analrapist")
 User.create(name: "Michael Bluth", email: "michael@bluthco.com", login: "mbluth")
 

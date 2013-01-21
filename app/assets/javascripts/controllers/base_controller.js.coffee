@@ -42,9 +42,10 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
 
     return @render(false)
 
-  switchViewByDateUser: ->
-    if @get('sidebarViewBy') is "date"
-      @set 'sidebarViewBy', "user"
-    else
-      @set 'sidebarViewBy', "date"
+  # not routable, an event
+  destroyCheckin: (node, event, context) ->
+    $(node).closest(".checkin").fadeOut 400, ->
+      context.get('checkin').destroy (err) =>
+        if err
+          throw err unless err instanceof Batman.ErrorsSet
 
