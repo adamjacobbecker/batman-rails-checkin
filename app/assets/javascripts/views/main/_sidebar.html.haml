@@ -1,28 +1,14 @@
-%div{"data-showif" => "sidebarViewBy | matches \"date\""}
-  .sidebar-date-user-toggle
-    Checkins by Date
-    \/
-    %a{"data-event-click" => "switchViewByDateUser"} by User
-  %ul.nav.nav-list.nav-list-bordered.day-list
-    %li{"data-foreach-day" => "days", "data-addclass-active" => "sidebarActiveDay.date | matches day.date"}
-      %a{"data-route" => "day.route"}
-        %i.icon-chevron-right.view-icon
-        %span.badge-wrapper
-          %span.badge.badge-inverse{"data-bind" => "day.checkin_count"}
-        %span{"data-bind" => "day.date_pretty"}
-
-%div{"data-showif" => "sidebarViewBy | matches \"user\""}
-  .sidebar-date-user-toggle
-    %a{"data-event-click" => "switchViewByDateUser"} Checkins by Date
-    \/
-    by User
-  %ul.nav.nav-list.nav-list-bordered.user-list
-    %li{"data-foreach-user" => "users", "data-addclass-active" => "sidebarActiveUser.id | equals user.id"}
-      %a{"data-route" => "user.route"}
-        %i.icon-chevron-right.view-icon
-        %img{"data-bind-src" => "user.gravatar_url"}
-        %span.email
-          %span{"data-bind" => "user.name"}
-          %i{"data-bind-class" => "user.status | append \" icon-circle\""}
-        %span.checkin{"data-bind" => "user.latest_checkin.firstGetDone"}
-        .clearfix
+%ul.nav.nav-list.nav-list-bordered.user-list
+  %li{"data-removeclass-active" => "user"}
+    %a{"data-route" => "routes.projects[project]"}
+      All Users
+      %i.icon-chevron-right.view-icon
+  %li{"data-foreach-sidebaruser" => "project.users", "data-addclass-active" => "user.id | equals sidebaruser.id"}
+    %a{"data-route" => "routes.projects[project].users[sidebaruser]"}
+      %i.icon-chevron-right.view-icon
+      %img{"data-bind-src" => "sidebaruser.gravatar_url"}
+      %span.email
+        %span{"data-bind" => "sidebaruser.name"}
+        %i{"data-bind-class" => "sidebaruser.status | append \" icon-circle\""}
+      %span.checkin{"data-bind" => "sidebaruser.latest_checkin.firstGetDone"}
+      .clearfix

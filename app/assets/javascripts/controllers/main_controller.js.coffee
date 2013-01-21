@@ -1,17 +1,6 @@
 class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseController
   routingKey: 'main'
 
-  index: (params) ->
-    @authenticated =>
-      @set 'users', BatmanRailsCheckin.User.get('all')
-      @set 'checkins', BatmanRailsCheckin.Checkin.get('all')
-      @set 'days', BatmanRailsCheckin.Day.get('all')
-
-      BatmanRailsCheckin.Day.load (err, days) =>
-        @set 'currentDay', days[0].get('date')
-
-      @render()
-
   login: (params) ->
     @notAuthenticated =>
       BatmanRailsCheckin.set 'pageTitle', 'Login'
@@ -33,10 +22,16 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
 
   logout: ->
     BatmanRailsCheckin.currentUser.destroy (err) =>
-      BatmanRailsCheckin.set 'currentUser', undefined
+      BatmanRailsCheckin.unset 'currentUser'
       @redirect '/login'
 
     @render(false)
+
+  index: (params) ->
+    @authenticated =>
+      @unset 'project'
+      BatmanRailsCheckin.unset 'currentProjectId'
+      @render()
 
   # show: (params) ->
   #   @set 'checkin', BatmanRailsCheckin.Checkin.find parseInt(params.id, 10), (err) ->
