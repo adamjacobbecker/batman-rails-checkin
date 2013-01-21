@@ -39,6 +39,7 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     project_id = parseInt(project_id)
 
     if @get('project')?.get('id') is project_id
+      BatmanRailsCheckin.set 'currentProjectId', project_id unless BatmanRailsCheckin.get('currentProjectId')
       cb()
 
     else
