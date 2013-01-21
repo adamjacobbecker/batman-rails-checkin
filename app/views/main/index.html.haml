@@ -19,6 +19,16 @@
                 "addclass-active" => "window.BatmanRailsCheckin.currentProjectId | equals navproject.id"}}
               %a{:data => {"bind" => "navproject.name", "route" => "routes.projects[navproject]"}}
 
+            %li{"data-hideif" => "window.BatmanRailsCheckin.isAddingProject"}
+              %a{"data-event-click" => "toggleIsAddingProject"} New Project...
+
+            %li.new-project-li{"data-showif" => "window.BatmanRailsCheckin.isAddingProject", "data-view" => "AddProjectFormView", |
+                               style: "display: none;"}
+              %form{"accept-charset" => "UTF-8", "data-event-submit" => "controllers.base.createProject", "data-formfor-project" => "newProject"}
+                %input.span2{type: "text", placeholder: "Project name", "data-bind" => "project.name", name: "project[:name]"}
+                %button.btn.btn-success Create Project
+                %a.btn{"data-event-click" => "toggleIsAddingProject"} &times;
+
           %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
             %li
               %a{:data => {bind: "window.BatmanRailsCheckin.currentUser.name | prepend 'logout '", |

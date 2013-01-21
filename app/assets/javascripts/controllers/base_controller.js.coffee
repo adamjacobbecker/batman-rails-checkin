@@ -4,6 +4,9 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     BatmanRailsCheckin.unset 'pageTitle'
     @set 'projects', BatmanRailsCheckin.Project.get('all')
 
+    if !BatmanRailsCheckin.get('newProject')
+      BatmanRailsCheckin.set 'newProject', new BatmanRailsCheckin.Project()
+
   authenticated: (cb) ->
     return cb() if BatmanRailsCheckin.currentUser
 
@@ -39,6 +42,7 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
       cb()
 
     else
+      @unset 'checkins'
       BatmanRailsCheckin.Project.find project_id, (err, project) =>
         @set 'project', project
         BatmanRailsCheckin.set 'currentProjectId', project.get('id')
@@ -52,4 +56,11 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
       context.get('checkin').destroy (err) =>
         if err
           throw err unless err instanceof Batman.ErrorsSet
+
+  createProject: (node, event, context) ->
+    alert 'hi'
+    # @get('newProject').save (err, project) =>
+    #   console.log project
+    #   context.redirect project
+
 
