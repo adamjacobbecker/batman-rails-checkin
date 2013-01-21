@@ -1,27 +1,28 @@
 Batman.config =
   pathPrefix: '/'
+  viewPrefix: '/assets/views'
+  fetchRemoteViews: true
   usePushState: true
 
 Batman.mixin Batman.Filters,
   momentFormatDateVerbose: (value) ->
     moment(value).format("\\a\\t h:mma \\o\\n M/D/YY")
 
+  momentFormatDate: (value) ->
+    moment(value).format("M/D/YY")
+
 window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
   @title = "Batman Rails Checkin"
 
-  Batman.ViewStore.prefix = 'assets/views'
+  @root 'main#index'
 
-  @root 'checkins#by_date'
-  @resources 'checkins'
-  @route '/checkins/by_date/:date', 'checkins#by_date'
-  @route '/checkins/by_user/:user_id', 'checkins#by_user'
+  @resources 'projects', ->
+    @resources 'checkins'
+    @resources 'users'
+
   @route '/login', 'main#login'
   @route '/logout', 'main#logout'
-
-  @navLinks: [
-    # {route: @get('routes.checkins'), controller: "checkins", text: "Checkins"},
-  ]
 
   @on 'run', ->
     if window.bootstrapData

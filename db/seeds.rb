@@ -8,9 +8,10 @@
 
 require 'ffaker'
 
-checkin_body = <<END
+def checkin_body(project_name)
+"
 #### Get Done
-repair banana stand
+repair banana stand for #{project_name}
 find company checkbook
 
 #### Got Done
@@ -21,9 +22,9 @@ Y: refrigerator keeps falling through the wall
 
 #### Shelf
 get mother into a home
-END
+"
+end
 
-User.create(name: "Adam Becker", email: "ad@mbecker.cc", login: "ajb")
 User.create(name: "Tobias Funke", email: "tobias@gobiasindustries.com", login: "analrapist")
 User.create(name: "Michael Bluth", email: "michael@bluthco.com", login: "mbluth")
 
@@ -39,7 +40,7 @@ Project.all.each do |project|
 
     10.times do
       break if rand(1..5) == 1
-      checkin = user.checkins.build body: checkin_body
+      checkin = user.checkins.build body: checkin_body(project.name)
       checkin.project_id = project.id
       checkin.created_at = date.to_time
       checkin.save

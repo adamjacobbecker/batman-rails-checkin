@@ -4,10 +4,14 @@ class CheckinsController < ActionController::Base
   before_filter :project_exists
 
   def index
+    checkins = @project.checkins
+
     if params[:user_id]
-      checkins = @project.checkins.where(user_id: params[:user_id])
-    else
-      checkins = @project.checkins.all
+      checkins = checkins.where(user_id: params[:user_id])
+    end
+
+    if params[:date]
+      checkins = checkins.for_date(Date.parse(params[:date]))
     end
 
     render json: checkins, each_serializer: CheckinListSerializer
@@ -34,8 +38,20 @@ class CheckinsController < ActionController::Base
   def create
     params[:checkin].delete(:user_id)
     params[:checkin].delete(:created_at)
+    params[:checkin].delete(:project_id)
     checkin = current_user.checkins.build(params[:checkin])
+    checkin.project_id = @project.id
     checkin.save
+
+    Thread.new do
+      if @project.campfire_subdomain && @project.campfire_token && @project.campfire_room
+        campfire = Tinder::Campfire.new @project.campfire_subdomain, token: @project.campfire_token
+        room = campfire.find_room_by_name @project.campfire_room
+        room.speak "#{checkin.user.name} checked in!"
+        room.paste checkin.body
+      end
+    end
+
     render json: checkin
   end
 

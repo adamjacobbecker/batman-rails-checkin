@@ -5,19 +5,19 @@ class UsersController < ActionController::Base
 
   def current
     if signed_in?
-      render json: current_user, serializer: UserListSerializer, root: "user"
+      render json: current_user, serializer: UserSerializer, root: "user"
     else
       render json: {status: "not logged in"}, status: 401
     end
   end
 
   def index
-    render json: User.all, each_serializer: UserListSerializer, root: "user", project_id: @project.id
+    render json: @project.users.all, each_serializer: UserListSerializer, root: "users", project_id: @project.id
   end
 
   def show
-    user = User.find params[:id]
-    render json: user, serializer: UserListSerializer, project_id: @project.id
+    user = @project.users.find params[:id].split("_")[0]
+    render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
   end
 
   def oauth

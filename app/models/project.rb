@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :campfire_subdomain, :campfire_token, :campfire_room
+
+  belongs_to :owner, class_name: "User"
 
   has_many :checkins
   has_and_belongs_to_many :users

@@ -3,7 +3,7 @@
     %form#new_checkin.new_checkin{"accept-charset" => "UTF-8", "data-event-submit" => "create", "data-formfor-checkin" => "checkin"}
       %fieldset
         %legend
-          %span{"data-hideif" => "checkin.id"} New Checkin
+          %span{"data-hideif" => "checkin.id"} Checking in for <span data-bind="project.name"></span>
           %span{"data-showif" => "checkin.id"} Edit Checkin
         #error-explanation.alert-message.block-message.error{"data-showif" => "checkin.errors.length"}
           %p
@@ -21,9 +21,8 @@
               %textarea#post_content{:cols => "40", "data-bind" => "checkin.body", :name => "checkin[body]", :rows => "20"}
 
         %div.span6{"data-hideif" => "checkin.id"}
-          %div.recent-checkin{"data-partial" => "checkins/_checkin", "data-context-checkin" => "currentUser.latest_checkin", "data-context-user" => "currentUser", "data-view" => "LatestCheckinView", "data-showif" => "currentUser.latest_checkin.id"}
+          %div.recent-checkin{"data-partial" => "checkins/_checkin", "data-context-checkin" => "latest_checkin", "data-context-user" => "currentUser", "data-view" => "LatestCheckinView", "data-showif" => "latest_checkin.id"}
 
       .actions
         %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Submit"}
-          %a.btn{"onclick" => "history.back();"} Cancel
 

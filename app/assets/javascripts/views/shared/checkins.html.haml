@@ -1,0 +1,20 @@
+.row-fluid#main-row
+  .span3.sidebar-nav-fixed
+    .above-sidebar
+      %h4
+        %span{"data-bind" => "project.name"}
+        %small
+          %a{"data-event-click" => "toggleIsViewingSettings"}
+            %span{"data-hideif" => "isViewingSettings"} settings &rarr;
+            %span{"data-showif" => "isViewingSettings"} &larr; users
+    %div{"data-partial" => "main/_sidebar", "data-hideif" => "isViewingSettings"}
+    %div{"data-partial" => "main/_projectSettings", "data-showif" => "isViewingSettings"}
+
+  .fixed-sidebar
+    %a.btn.btn-success.post-checkin-button{"data-route" => "routes.projects[project].checkins.new"}
+      %i.icon-bullhorn
+      Post Checkin
+
+    %p.no-checkins{"data-showif" => "checkins.length | equals 0"} No checkins to display.
+    .checkins
+      .checkin-wrapper{"data-foreach-checkin" => "checkins.sortedByDescending.created_at", "data-partial" => "checkins/_checkin"}
