@@ -12,3 +12,9 @@
         %i{"data-bind-class" => "sidebaruser.status | append \" icon-circle\""}
       %span.checkin{"data-bind" => "sidebaruser.latest_checkin.firstGetDone"}
       .clearfix
+
+%h5 Add Collaborator
+%form.new-collaborator-form{"accept-charset" => "UTF-8", "data-event-submit" => "createCollaborator", |
+      "data-formfor-user" => "newCollaborator"}
+  %input{type: "text", "data-bind" => "user.email", name: "user[:email]", placeholder: "Email Address"}
+  %button.btn.btn-primary Add

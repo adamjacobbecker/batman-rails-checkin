@@ -1,7 +1,7 @@
 class UsersController < ActionController::Base
   include UsersHelper
 
-  before_filter :project_exists, only: [:index, :show]
+  before_filter :project_exists, only: [:index, :show, :create]
 
   def current
     if signed_in?
@@ -17,6 +17,12 @@ class UsersController < ActionController::Base
 
   def show
     user = @project.users.find params[:id].split("_")[0]
+    render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
+  end
+
+  def create
+    user = User.find_by_email(params[:user][:email])
+    @project.users << user
     render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
   end
 

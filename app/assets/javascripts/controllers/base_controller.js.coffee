@@ -46,10 +46,15 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
       @unset 'checkins'
       BatmanRailsCheckin.Project.find project_id, (err, project) =>
         @set 'project', project
+        @set 'newCollaborator', new BatmanRailsCheckin.User {project_id: project.get('id')}
         BatmanRailsCheckin.set 'currentProjectId', project.get('id')
         cb()
 
     return @render(false)
+
+  createCollaborator: ->
+    @get('newCollaborator').save (err) =>
+      @set 'newCollaborator', new BatmanRailsCheckin.User {project_id: @get('project').get('id')}
 
   # not routable, an event
   destroyCheckin: (node, event, context) ->
@@ -63,6 +68,7 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
       @redirect project
       project.get('users').load ->
       @unset('isAddingProject')
+      @set 'newProject', new BatmanRailsCheckin.Project()
 
   toggleIsAddingProject: (node, event, context) ->
     if @get('isAddingProject')?
