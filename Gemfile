@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'haml_assets'
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
+gem 'tinder'
 
 group :development, :test do
   gem 'ffaker'

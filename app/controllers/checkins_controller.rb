@@ -42,6 +42,16 @@ class CheckinsController < ActionController::Base
     checkin = current_user.checkins.build(params[:checkin])
     checkin.project_id = @project.id
     checkin.save
+
+    Thread.new do
+      if @project.campfire_subdomain && @project.campfire_token && @project.campfire_room
+        campfire = Tinder::Campfire.new @project.campfire_subdomain, token: @project.campfire_token
+        room = campfire.find_room_by_name @project.campfire_room
+        room.speak "#{checkin.user.name} checked in!"
+        room.paste checkin.body
+      end
+    end
+
     render json: checkin
   end
 
