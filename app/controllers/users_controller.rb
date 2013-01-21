@@ -22,7 +22,7 @@ class UsersController < ActionController::Base
 
   def create
     user = User.find_by_email(params[:user][:email])
-    @project.users << user
+    @project.users << user if !@project.users.include?(user)
     render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
   end
 
