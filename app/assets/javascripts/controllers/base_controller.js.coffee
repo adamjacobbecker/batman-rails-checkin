@@ -59,6 +59,7 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     @get('newCollaborator').save (err, user) =>
       if !user.get('id')?
         BatmanRailsCheckin.flashSuccess "We've sent an email inviting #{email} to register for MorningCheckin."
+        @get('project').get('invitees').load ->
       @set 'newCollaborator', new BatmanRailsCheckin.User {project_id: @get('project').get('id')}
 
   # not routable, an event

@@ -28,6 +28,9 @@ class UsersController < ActionController::Base
       render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
     else
       Invitee.create email: params[:user][:email].downcase, project_id: @project.id
+      Thread.new do
+        UserMailer.invite_email(params[:user][:email], current_user, @project).deliver
+      end
       render json: []
     end
   end

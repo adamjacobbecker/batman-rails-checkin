@@ -27,7 +27,7 @@ BatmanRailsCheckin::Application.routes.draw do
   post 'users/oauth', to: 'users#oauth', :constraints => FormatTest.new(:html)
 
   get '/*foo', :to => 'main#index', :constraints => FormatTest.new(:html)
-  get '/', :to => 'main#index', :constraints => FormatTest.new(:html)
+  root :to => 'main#index', :constraints => FormatTest.new(:html)
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
