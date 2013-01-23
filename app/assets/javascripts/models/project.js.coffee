@@ -6,6 +6,9 @@ class BatmanRailsCheckin.Project extends Batman.Model
   @hasMany 'users',
     saveInline: false
 
+  @hasMany 'invitees',
+    saveInline: false
+
   @resourceName: 'project'
   @storageKey: 'projects'
 

@@ -18,3 +18,8 @@
   %h5 Add Collaborator
   %input{type: "text", "data-bind" => "user.email", name: "user[:email]", placeholder: "Email Address"}
   %button.btn.btn-primary Add
+
+%div{"data-showif" => "project.invitees | get \"first\""}
+  %h5 Invited Users
+  %ul
+    %li{"data-foreach-invitee" => "project.invitees", "data-bind" => "invitee.email"}
