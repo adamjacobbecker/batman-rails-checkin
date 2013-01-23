@@ -54,8 +54,11 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     return @render(false)
 
   createCollaborator: (node) ->
+    email = $(node).find('input').val()
     @get('newCollaborator').set 'email', $(node).find('input').val() # hack for typeahead not updating
-    @get('newCollaborator').save (err) =>
+    @get('newCollaborator').save (err, user) =>
+      if !user.get('id')?
+        BatmanRailsCheckin.flashSuccess "We've sent an email inviting #{email} to register for MorningCheckin."
       @set 'newCollaborator', new BatmanRailsCheckin.User {project_id: @get('project').get('id')}
 
   # not routable, an event

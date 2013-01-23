@@ -1,4 +1,6 @@
 BatmanRailsCheckin::Application.routes.draw do
+  resources :invitees, except: :edit
+
   class FormatTest
     attr_accessor :mime_type
 

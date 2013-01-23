@@ -22,8 +22,14 @@ class UsersController < ActionController::Base
 
   def create
     user = User.find_by_email(params[:user][:email])
-    @project.users << user
-    render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
+
+    if user
+      @project.users << user
+      render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
+    else
+      Invitee.create email: params[:user][:email].downcase, project_id: @project.id
+      render json: []
+    end
   end
 
   def oauth
@@ -44,6 +50,11 @@ class UsersController < ActionController::Base
       name: response["name"],
       email: response["email"]
     )
+
+    Invitee.where(email: response["email"].downcase).each do |invitee|
+      user.projects << Project.find(invitee.project_id)
+      invitee.destroy
+    end
 
     sign_in(user)
 
