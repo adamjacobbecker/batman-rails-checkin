@@ -28,7 +28,7 @@
                 %form{"accept-charset" => "UTF-8", "data-event-submit" => "controllers.base.createProject", "data-formfor-project" => "controllers.base.newProject"}
                   %input.span2{type: "text", placeholder: "Project name", "data-bind" => "project.name", name: "project[:name]"}
                   %button.btn.btn-success Create Project
-                  %a.btn{"data-event-click" => "controllers.base.toggleIsAddingProject"} &times;
+                  %a.btn{"data-event-click" => "controllers.base.toggleIsAddingProject"} &nbsp;&times;&nbsp;
 
             %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
               %li
