@@ -5,6 +5,6 @@ class UserMailer < ActionMailer::Base
     @to_email = to_email
     @from_user = from_user
     @project = project
-    mail(to: to_email, from: @from_user.email, subject: "#{from_user.name} has invited you to MorningCheckin")
+    mail(to: to_email, subject: "#{from_user.name} has invited you to MorningCheckin")
   end
 end
