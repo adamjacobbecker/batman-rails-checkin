@@ -1,6 +1,8 @@
 class BatmanRailsCheckin.LatestCheckinView extends Batman.View
 
   ready: ->
+    $node = $(@get('node'))
+
     insertGotDone = (text) ->
       linesArray = $("#post_content").val().split(/\n/)
       newLinesArray = []
@@ -15,13 +17,13 @@ class BatmanRailsCheckin.LatestCheckinView extends Batman.View
 
     setTimeout =>
       $root = $(@get('node')).closest("#new-checkin")
-      $root.find("ul.get-done li").click ->
+      $node.on "click", "ul.get-done li", ->
         insertGotDone($(@).text().substr(2))
 
-      $root.find("ul.get-done li").mouseover ->
+      $node.on "mouseover", "ul.get-done li", ->
         $(@).html "&larr; " + $(@).text().substr(2)
 
-      $root.find("ul.get-done li").mouseout ->
+      $node.on "mouseout", "ul.get-done li", ->
         $(@).html "&rarr; " + $(@).text().substr(2)
 
     , 100

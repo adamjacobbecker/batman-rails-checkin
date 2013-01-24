@@ -5,4 +5,4 @@
     %span.time{"data-bind" => "checkin.created_at | momentFormatDateVerbose"}
     %a.delete{"data-showif" => "checkin.user_id | equals currentUser.user_id", "data-event-click" => "destroyCheckin"} Delete
 
-  %p{"data-bind" => "checkin.body_html | raw", "data-view" => "CheckinBodyView"}
+  %p{"data-bind" => "checkin.body_html | checkinify | raw"}
