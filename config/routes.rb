@@ -17,7 +17,7 @@ BatmanRailsCheckin::Application.routes.draw do
   resources :projects, except: :edit, :constraints => FormatTest.new(:json) do
     resources :checkins, :except => :edit, :constraints => FormatTest.new(:json)
     resources :users, only: [:index, :show, :create], :constraints => FormatTest.new(:json)
-    resources :invitees, only: [:index], :constraints => FormatTest.new(:json)
+    resources :invitees, only: [:index, :destroy], :constraints => FormatTest.new(:json)
   end
 
   delete 'users', to: 'users#destroy', :constraints => FormatTest.new(:json)

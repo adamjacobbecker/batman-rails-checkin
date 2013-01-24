@@ -102,3 +102,6 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     return unless confirm "Are you sure you want to delete this project?"
     @get('project').destroy (err) =>
       @redirect "/"
+
+  deleteInvitee: (node, event, context) ->
+    context.get('invitee').destroy (err) =>

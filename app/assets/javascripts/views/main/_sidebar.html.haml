@@ -10,7 +10,7 @@
       %span.email
         %span{"data-bind" => "sidebaruser.name"}
         %i{"data-bind-class" => "sidebaruser.status | append \" icon-circle\""}
-      %span.checkin{"data-bind" => "sidebaruser.latest_checkin.firstGetDone"}
+      %span.first-get-done{"data-bind" => "sidebaruser.latest_checkin.firstGetDone"}
       .clearfix
 
 %form.new-collaborator-form{"accept-charset" => "UTF-8", "data-event-submit" => "createCollaborator", |
@@ -21,5 +21,7 @@
 
 %div{"data-showif" => "project.invitees | get \"first\""}
   %h5 Invited Users
-  %ul
-    %li{"data-foreach-invitee" => "project.invitees", "data-bind" => "invitee.email"}
+  %ul.invitees
+    %li{"data-foreach-invitee" => "project.invitees"}
+      %span{"data-bind" => "invitee.email"}
+      %a.delete{"data-event-click" => "deleteInvitee"} (delete)
