@@ -50,7 +50,7 @@ class UsersController < ActionController::Base
     response = HTTParty.get("https://api.github.com/user?access_token=#{token.token}")
 
     user = User.where(login: response["login"], access_token: token.token).first_or_create!(
-      name: response["name"],
+      name: response["name"] && !response["name"].blank? ? response["name"] : response["login"],
       email: response["email"]
     )
 
