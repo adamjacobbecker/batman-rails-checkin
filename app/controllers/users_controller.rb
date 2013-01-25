@@ -55,7 +55,7 @@ class UsersController < ActionController::Base
 
     user = User.where(login: response["login"], access_token: token.token).first_or_create!(
       name: response["name"] && !response["name"].blank? ? response["name"] : response["login"],
-      email: response["email"] && !response["email"].blank? || response["email"] : invited_email
+      email: response["email"] && !response["email"].blank? ? response["email"] : invited_email
     )
 
     Invitee.associate_invites_with_user_by_email(user)
