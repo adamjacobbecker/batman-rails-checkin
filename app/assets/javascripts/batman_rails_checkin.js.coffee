@@ -35,7 +35,8 @@ Batman.mixin Batman.Filters,
     $flags.replaceWith($flags = $("<ul>#{newFlagsHtml}</ul>"))
 
     $flags.find("li").each ->
-      $(@).html $(@).html().replace(/^([R|Y|G])\:\s/, "<i class='icon-flag flag-$1'></i>")
+      if matches = $(@).html().match(/^([R|Y|G])\:\s/i)
+        $(@).html $(@).html().replace /^([R|Y|G])\:\s/i, "<i class='icon-flag flag-#{matches[1].toUpperCase()}'></i>"
 
     newShelfHtml = ""
     for shelfItem in $shelf.text().split('\n')
