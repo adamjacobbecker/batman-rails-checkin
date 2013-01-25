@@ -4,7 +4,7 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
   login: (params) ->
     @notAuthenticated =>
       BatmanRailsCheckin.set 'pageTitle', 'Login'
-      @set('loginUser', new BatmanRailsCheckin.User())
+      @set('invite', params.invite)
       @render()
 
   sendLogin: (params) ->

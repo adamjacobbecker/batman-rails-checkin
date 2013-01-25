@@ -2,7 +2,7 @@ Hi <%= @to_email %>,
 
 <%= @from_user.name %> has invited you to the project "<%= @project.name %>" on MorningCheckin.
 
-To sign up, just follow this link: <%= root_url %>
+To sign up, just follow this link: <%= root_url(invite: @invite_code) %>
 
 Cheers!
 -MorningCheckin

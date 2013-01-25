@@ -27,9 +27,9 @@ class UsersController < ActionController::Base
       @project.users << user
       render json: user, serializer: UserDetailsSerializer, project_id: @project.id, root: "user"
     else
-      Invitee.create email: params[:user][:email].downcase, project_id: @project.id
+      invitee = Invitee.create email: params[:user][:email].downcase, project_id: @project.id
       Thread.new do
-        UserMailer.invite_email(params[:user][:email], current_user, @project).deliver
+        UserMailer.invite_email(params[:user][:email], current_user, invitee.invite_code, @project).deliver
       end
       render json: []
     end
@@ -43,7 +43,9 @@ class UsersController < ActionController::Base
                                 authorize_url: 'https://github.com/login/oauth/authorize',
                                 token_url: 'https://github.com/login/oauth/access_token')
 
-    return redirect_to client.auth_code.authorize_url(redirect_uri: '') unless params[:code]
+    return redirect_to client.auth_code.authorize_url(redirect_uri: '', state: params[:invite]) unless params[:code]
+
+    invite_code = params[:state]
 
     token = client.auth_code.get_token(params[:code], redirect_uri: '')
 
@@ -54,10 +56,8 @@ class UsersController < ActionController::Base
       email: response["email"]
     )
 
-    Invitee.where(email: response["email"].downcase).each do |invitee|
-      user.projects << Project.find(invitee.project_id)
-      invitee.destroy
-    end
+    Invitee.associate_invites_with_user_by_email(user)
+    Invitee.associate_invites_with_user_by_invite_code(user, invite_code)
 
     sign_in(user)
 

@@ -17,7 +17,10 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
         BatmanRailsCheckin.set 'currentUser', user
         cb()
       else
-        @redirect "/login"
+        if @get('params').invite?
+          @redirect "/login?invite=#{@get('params').invite}"
+        else
+          @redirect "/login"
 
     return @render(false)
 

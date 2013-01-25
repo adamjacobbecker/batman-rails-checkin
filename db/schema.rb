@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123202235) do
+ActiveRecord::Schema.define(:version => 20130124222034) do
 
   create_table "checkins", :force => true do |t|
     t.text     "body"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20130123202235) do
   create_table "invitees", :force => true do |t|
     t.string   "email"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "invite_code"
   end
 
   create_table "projects", :force => true do |t|
