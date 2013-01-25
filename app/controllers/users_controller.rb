@@ -46,14 +46,16 @@ class UsersController < ActionController::Base
     return redirect_to client.auth_code.authorize_url(redirect_uri: '', state: params[:invite]) unless params[:code]
 
     invite_code = params[:state]
+    invited_email = Invite.where(invite_code: invite_code).email
 
     token = client.auth_code.get_token(params[:code], redirect_uri: '')
 
     response = HTTParty.get("https://api.github.com/user?access_token=#{token.token}")
 
+
     user = User.where(login: response["login"], access_token: token.token).first_or_create!(
       name: response["name"] && !response["name"].blank? ? response["name"] : response["login"],
-      email: response["email"]
+      email: response["email"] && !response["email"].blank? || response["email"] : invited_email
     )
 
     Invitee.associate_invites_with_user_by_email(user)
