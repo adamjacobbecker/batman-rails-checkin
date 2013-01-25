@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
 
   validates :login, presence: true, uniqueness: { case_sensitive: false }
-  validates :email, presence: true, uniqueness: { case_sensitive: false }
 
   def latest_checkin_for_project_id(project_id)
     checkins.where(project_id: project_id).order("created_at DESC").first
