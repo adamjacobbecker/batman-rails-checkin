@@ -11,6 +11,12 @@ class UsersController < ActionController::Base
     end
   end
 
+  def update
+    user = current_user
+    user.update_attributes(params[:user])
+    render json: user
+  end
+
   def index
     render json: @project.users.all, each_serializer: UserListSerializer, root: "users", project_id: @project.id
   end

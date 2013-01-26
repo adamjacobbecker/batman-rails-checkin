@@ -1,6 +1,7 @@
 class BatmanRailsCheckin.BaseController extends Batman.Controller
 
   @beforeFilter ->
+    BatmanRailsCheckin.unset 'activeNav'
     BatmanRailsCheckin.unset 'pageTitle'
     @set 'projects', BatmanRailsCheckin.Project.get('all')
 

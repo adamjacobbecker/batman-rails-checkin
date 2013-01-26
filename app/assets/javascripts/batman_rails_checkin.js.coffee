@@ -58,6 +58,7 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
     @resources 'checkins'
     @resources 'users'
 
+  @route '/settings', 'main#settings'
   @route '/login', 'main#login'
   @route '/logout', 'main#logout'
 

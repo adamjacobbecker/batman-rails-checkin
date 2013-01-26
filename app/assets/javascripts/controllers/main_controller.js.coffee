@@ -33,6 +33,26 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
       BatmanRailsCheckin.unset 'currentProjectId'
       @render()
 
+
+  settings: (params) ->
+    @authenticated =>
+      BatmanRailsCheckin.unset 'currentProjectId'
+      BatmanRailsCheckin.set 'activeNav', 'settings'
+      @render()
+
+  updateSettings: ->
+    new Batman.Request
+      url: '/users.json'
+      method: 'put'
+      type: 'json'
+      data:
+        user:
+          email: BatmanRailsCheckin.get('currentUser').get('email')
+          name: BatmanRailsCheckin.get('currentUser').get('name')
+      success: (data) =>
+        BatmanRailsCheckin.get('currentUser').set('gravatar_url', data.user.gravatar_url)
+        BatmanRailsCheckin.flashSuccess "Settings updated successfully!"
+
   # show: (params) ->
   #   @set 'checkin', BatmanRailsCheckin.Checkin.find parseInt(params.id, 10), (err) ->
   #     throw err if err

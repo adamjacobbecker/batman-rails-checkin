@@ -1,6 +1,7 @@
 class BatmanRailsCheckin.User extends Batman.Model
   @hasMany 'checkins',
     autoload: true
+    saveInline: false
 
   @belongsTo 'project',
     autoload: false
@@ -15,7 +16,7 @@ class BatmanRailsCheckin.User extends Batman.Model
   @urlNestsUnder 'project'
 
   # fields
-  @encode "user_id", "email", "name", "password", "gravatar_url", "project_id"
+  @encode "user_id", "email", "name", "gravatar_url", "project_id"
 
   @encode "latest_checkin",
     decode: (x) ->

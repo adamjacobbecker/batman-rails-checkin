@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :login, :access_token
+  attr_accessible :email, :name
 
   default_scope order("name")
 

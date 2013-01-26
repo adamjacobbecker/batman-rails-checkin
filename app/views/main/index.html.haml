@@ -31,9 +31,14 @@
                   %a.btn{"data-event-click" => "controllers.base.toggleIsAddingProject"} &nbsp;&times;&nbsp;
 
             %ul.nav.pull-right{data: {showif: "window.BatmanRailsCheckin.currentUser"}}
+              %li{"data-addclass-active" => "window.BatmanRailsCheckin.activeNav | equals \"settings\""}
+                %a{"data-route" => "routes.settings"}
+                  %img.avatar{"data-bind-src" => "window.BatmanRailsCheckin.currentUser.gravatar_url"}
+                  %span{"data-bind" => "window.BatmanRailsCheckin.currentUser.name"}
               %li
-                %a{:data => {bind: "window.BatmanRailsCheckin.currentUser.name | prepend 'logout '", |
-                            "route" => "routes.logout"}}
+                %a{"data-route" => "routes.logout"}
+                  %i.icon-signout
+
     #main.container
       .content
         %p#flashnotice.alert.alert-overlay.alert-success{:data => {"showif" => "window.BatmanRailsCheckin.flash.success.length"}}

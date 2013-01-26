@@ -1,0 +1,24 @@
+%h4 User Settings
+
+%form{"accept-charset" => "UTF-8", "data-event-submit" => "updateSettings", "data-formfor-user" => "window.BatmanRailsCheckin.currentUser"}
+  %fieldset
+    #error-explanation.alert-message.block-message.error{"data-showif" => "user.errors.length"}
+      %p
+        %strong
+          %span{"data-bind" => "user.errors.length"}
+          %span{"data-bind" => "'error' | pluralize user.errors.length"}
+          prevented your settings from being saved
+      %ul
+        %li{"data-bind" => "error.message", "data-foreach-error" => "user.errors"}
+
+  .control-group
+    %label Name
+    %input{"data-bind" => "user.name", name: "user[name]"}
+
+  .control-group
+    %label Email
+    %input{"data-bind" => "user.email", name: "user[email]"}
+
+  .form-actions
+    %input.btn.btn-primary{:name => "commit", :type => "submit", :value => "Submit"}
+

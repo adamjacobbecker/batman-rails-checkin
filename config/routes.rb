@@ -20,6 +20,7 @@ BatmanRailsCheckin::Application.routes.draw do
     resources :invitees, only: [:index, :destroy], :constraints => FormatTest.new(:json)
   end
 
+  put 'users', to: 'users#update', :constraints => FormatTest.new(:json)
   delete 'users', to: 'users#destroy', :constraints => FormatTest.new(:json)
   get 'users/typeahead', to: 'users#typeahead', constraints: FormatTest.new(:json)
   get 'users/current', to: 'users#current', constraints: FormatTest.new(:json)
