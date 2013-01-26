@@ -4,9 +4,6 @@
   paths.inject({}) do |all_views, f|
     viewname = f.sub( /^#{prefix}/, '' ).sub( /\..*$/i, '' )
     all_views[viewname] = environment["views#{viewname}.html"].to_s
-    ## the following appear to be identical ##
-    # all_views[viewname] = asset_environment["views#{viewname}.html"].to_s
-    # all_views[viewname] = Rails.application.assets["views#{viewname}.html"].to_s
     all_views
   end.to_json
 %>

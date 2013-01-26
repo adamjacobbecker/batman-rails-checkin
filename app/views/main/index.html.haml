@@ -4,7 +4,8 @@
     %meta{:charset => "utf-8"}
       %title{"data-bind" => "window.BatmanRailsCheckin.pageTitle"}
       :javascript
-        var bootstrapData = #{@user_json}
+        var bootstrapData = #{@user_json};
+        var railsEnv = "#{Rails.env}";
       = stylesheet_link_tag 'application'
       = javascript_include_tag "application"
       = csrf_meta_tags

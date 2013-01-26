@@ -1,7 +1,7 @@
-class CheckinsController < ActionController::Base
-  include UsersHelper
-
+class CheckinsController < BaseActionController
   before_filter :project_exists
+
+  before_filter :checkin_exists_and_is_mine, only: [:destroy, :update]
 
   def index
     checkins = @project.checkins
@@ -22,17 +22,15 @@ class CheckinsController < ActionController::Base
   end
 
   def destroy
-    checkin = @project.checkins.find(params[:id])
-    checkin.destroy
-    render json: checkin
+    @checkin.destroy
+    render json: @checkin
   end
 
   def update
     params[:checkin].delete(:user_id)
     params[:checkin].delete(:created_at)
-    checkin = @project.checkins.find(params[:id])
-    checkin.update_attributes(params[:checkin])
-    render json: checkin
+    @checkin.update_attributes(params[:checkin])
+    render json: @checkin
   end
 
   def create
@@ -57,7 +55,8 @@ class CheckinsController < ActionController::Base
 
   private
 
-  def project_exists
-    @project = Project.find params[:project_id]
+  def checkin_exists_and_is_mine
+    @checkin = @project.checkins.find(params[:id])
+    return unauthorized unless @checkin.user == current_user
   end
 end

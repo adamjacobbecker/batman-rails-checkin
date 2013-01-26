@@ -1,5 +1,8 @@
-class ProjectsController < ActionController::Base
-  include UsersHelper
+class ProjectsController < BaseActionController
+
+  before_filter :project_exists, only: [:update, :show, :destroy]
+
+  before_filter :i_am_project_owner, only: :destroy
 
   def index
     render json: current_user.projects.all
@@ -15,20 +18,26 @@ class ProjectsController < ActionController::Base
 
   def update
     params[:project].delete("owner_id")
-    project = current_user.projects.find params[:id]
-    project.update_attributes params[:project]
-    render json: project
+    @project.update_attributes params[:project]
+    render json: @project
   end
 
   def show
-    project = current_user.projects.find params[:id]
-    render json: project
+    render json: @project
   end
 
   def destroy
-    project = current_user.projects.find params[:id]
-    project.destroy
-    render json: project
+    @project.destroy
+    render json: @project
   end
 
+  private
+
+  def project_exists
+    @project = current_user.projects.find params[:id]
+  end
+
+  def i_am_project_owner
+    return unauthorized unless @project.owner == current_user
+  end
 end

@@ -63,7 +63,7 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
   @route '/logout', 'main#logout'
 
   @on 'run', ->
-    # BatmanRailsCheckin.preloadViews()
+    BatmanRailsCheckin.preloadViews() unless window.railsEnv is "development"
 
     if window.bootstrapData
       if bootstrapData.user_list? then @set 'currentUser', new BatmanRailsCheckin.User().fromJSON(bootstrapData.user_list)

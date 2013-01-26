@@ -1,6 +1,4 @@
-class MainController < ActionController::Base
-  include UsersHelper
-
+class MainController < BaseActionController
   def index
     @user_json = if current_user
       UserListSerializer.new(current_user).to_json

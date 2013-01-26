@@ -19,6 +19,6 @@
 #= require_tree ./views
 
 #= require_tree .
-# Run the Batman app
+
 $(document).ready ->
   BatmanRailsCheckin.run()

@@ -1,5 +1,4 @@
-class UsersController < ActionController::Base
-  include UsersHelper
+class UsersController < BaseActionController
 
   before_filter :project_exists, only: [:index, :show, :create]
 
@@ -79,11 +78,5 @@ class UsersController < ActionController::Base
 
   def typeahead
     render json: User.where("email LIKE :query", query: "%#{params[:query]}%").pluck("email")
-  end
-
-  private
-
-  def project_exists
-    @project = Project.find params[:project_id]
   end
 end

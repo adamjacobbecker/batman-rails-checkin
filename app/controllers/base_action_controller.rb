@@ -1,0 +1,13 @@
+class BaseActionController < ActionController::Base
+  include UsersHelper
+
+  private
+
+  def project_exists
+    @project = current_user.projects.find params[:project_id]
+  end
+
+  def unauthorized
+    render json: {status: "unauthorized"}, status: 401
+  end
+end
