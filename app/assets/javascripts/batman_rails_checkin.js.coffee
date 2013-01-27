@@ -50,7 +50,7 @@ Batman.mixin Batman.Filters,
 
 window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
-  @title = "Batman Rails Checkin"
+  @title = "MorningCheckin"
 
   @root 'main#index'
 
