@@ -1,15 +1,6 @@
 class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseController
   routingKey: 'checkins'
 
-
-  show: (params) ->
-    @authenticated =>
-      @set 'checkin', BatmanRailsCheckin.Checkin.find parseInt(params.id), (err, checkin) =>
-        BatmanRailsCheckin.set 'pageTitle', checkin.get('date')
-        throw err if err
-
-      @render()
-
   new: (params) ->
     @authenticated =>
       @withProject params.projectId, =>
@@ -52,13 +43,6 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
           @get('project').get('users').load ->
           @redirect "/projects/#{@get('project').get('id')}/users"
 
-  edit: (params) ->
-    @authenticated =>
-      @set 'checkin', BatmanRailsCheckin.Checkin.find parseInt(params.id), (err, checkin) ->
-        BatmanRailsCheckin.set 'pageTitle', "Editing #{checkin.get('date')}"
-        throw err if err
-      @form = @render()
-
   update: (params) ->
     @authenticated =>
       @get('checkin').save (err) =>
@@ -69,7 +53,4 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
         else
           BatmanRailsCheckin.flashSuccess "Checkin updated successfully!"
           @redirect '/checkins'
-
-    @get('checkins').remove(context.get('checkin'))
-    BatmanRailsCheckin.flashSuccess "Checkin deleted successfully!"
 

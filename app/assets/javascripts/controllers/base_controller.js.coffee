@@ -8,13 +8,16 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     if !BatmanRailsCheckin.get('controllers').get('base').get('newProject')
       BatmanRailsCheckin.get('controllers').get('base').set 'newProject', new BatmanRailsCheckin.Project()
 
+  loadCurrentUser = (cb) =>
+    user = new BatmanRailsCheckin.User()
+    user.url = '/users/current'
+    user.load cb
+
   authenticated: (cb) ->
     return cb() if BatmanRailsCheckin.currentUser
 
-    user = new BatmanRailsCheckin.User()
-    user.url = '/users/current'
-    user.load (err, user) =>
-      if user and user.get('id')?
+    loadCurrentUser (err, user) =>
+      if user and user.get('user_id')?
         BatmanRailsCheckin.set 'currentUser', user
         cb()
       else
@@ -28,10 +31,8 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
   notAuthenticated: (cb) ->
     return @redirect "/" if BatmanRailsCheckin.currentUser
 
-    user = new BatmanRailsCheckin.User()
-    user.url = '/users/current'
-    user.load (err, user) =>
-      if user and user.get('id')?
+    loadCurrentUser (err, user) =>
+      if user and user.get('user_id')?
         BatmanRailsCheckin.set 'currentUser', user
         @redirect "/"
       else

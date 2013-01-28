@@ -51,7 +51,7 @@ class UsersController < BaseActionController
     return redirect_to client.auth_code.authorize_url(redirect_uri: '', state: params[:invite]) unless params[:code]
 
     invite_code = params[:state]
-    invited_email = Invite.where(invite_code: invite_code).email
+    invitee = Invitee.where(invite_code: invite_code)
 
     token = client.auth_code.get_token(params[:code], redirect_uri: '')
 
@@ -60,7 +60,7 @@ class UsersController < BaseActionController
 
     user = User.where(login: response["login"], access_token: token.token).first_or_create!(
       name: response["name"] && !response["name"].blank? ? response["name"] : response["login"],
-      email: response["email"] && !response["email"].blank? ? response["email"] : invited_email
+      email: response["email"] && !response["email"].blank? ? response["email"] : (invitee ? invitee.email : '')
     )
 
     Invitee.associate_invites_with_user_by_email(user)
