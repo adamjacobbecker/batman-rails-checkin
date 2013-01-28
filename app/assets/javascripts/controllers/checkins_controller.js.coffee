@@ -42,15 +42,3 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
           BatmanRailsCheckin.flashSuccess "Checkin created successfully!"
           @get('project').get('users').load ->
           @redirect "/projects/#{@get('project').get('id')}/users"
-
-  update: (params) ->
-    @authenticated =>
-      @get('checkin').save (err) =>
-        $('#edit_checkin').attr('disabled', false)
-
-        if err
-          throw err unless err instanceof Batman.ErrorsSet
-        else
-          BatmanRailsCheckin.flashSuccess "Checkin updated successfully!"
-          @redirect '/checkins'
-

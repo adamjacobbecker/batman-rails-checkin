@@ -1,12 +1,12 @@
 class BatmanRailsCheckin.Checkin extends Batman.Model
+  @resourceName: 'checkin'
+  @storageKey: 'checkins'
+
   @belongsTo 'user',
     autoload: false
 
   @belongsTo 'project',
     autoload: false
-
-  @resourceName: 'checkin'
-  @storageKey: 'checkins'
 
   @persist Batman.RailsStorage
 

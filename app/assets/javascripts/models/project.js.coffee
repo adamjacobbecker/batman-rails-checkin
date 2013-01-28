@@ -1,4 +1,7 @@
 class BatmanRailsCheckin.Project extends Batman.Model
+  @resourceName: 'project'
+  @storageKey: 'projects'
+
   @hasMany 'checkins',
     saveInline: false
     autoload: false
@@ -8,9 +11,6 @@ class BatmanRailsCheckin.Project extends Batman.Model
 
   @hasMany 'invitees',
     saveInline: false
-
-  @resourceName: 'project'
-  @storageKey: 'projects'
 
   @persist Batman.RailsStorage
 

@@ -1,4 +1,7 @@
 class BatmanRailsCheckin.User extends Batman.Model
+  @resourceName: 'user'
+  @storageKey: 'users'
+
   @hasMany 'checkins',
     autoload: true
     saveInline: false
@@ -7,9 +10,6 @@ class BatmanRailsCheckin.User extends Batman.Model
     autoload: false
 
   @primaryKey: 'projects_users_id'
-
-  @resourceName: 'user'
-  @storageKey: 'users'
 
   @persist Batman.RailsStorage
 

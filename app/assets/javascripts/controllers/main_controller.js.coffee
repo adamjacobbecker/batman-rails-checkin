@@ -7,19 +7,6 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
       @set('invite', params.invite)
       @render()
 
-  sendLogin: (params) ->
-    @get('loginUser').save (err, user) =>
-      if err
-        throw err unless err instanceof Batman.ErrorsSet
-      else
-        if user.get('id')?
-          BatmanRailsCheckin.set 'currentUser', user
-          BatmanRailsCheckin.flashSuccess "Logged in!"
-          @redirect '/'
-        else
-          @set('loginUser', new BatmanRailsCheckin.User())
-          BatmanRailsCheckin.flashError "Problem logging in."
-
   logout: ->
     BatmanRailsCheckin.currentUser.destroy (err) =>
       BatmanRailsCheckin.unset 'currentUser'
@@ -32,7 +19,6 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
       @unset 'project'
       BatmanRailsCheckin.unset 'currentProjectId'
       @render()
-
 
   settings: (params) ->
     @authenticated =>
@@ -52,47 +38,3 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
       success: (data) =>
         BatmanRailsCheckin.get('currentUser').set('gravatar_url', data.user.gravatar_url)
         BatmanRailsCheckin.flashSuccess "Settings updated successfully!"
-
-  # show: (params) ->
-  #   @set 'checkin', BatmanRailsCheckin.Checkin.find parseInt(params.id, 10), (err) ->
-  #     throw err if err
-
-  #   @render source: 'checkins/show'
-
-  # new: (params) ->
-  #   @set 'checkin', new BatmanRailsCheckin.Checkin()
-  #   @form = @render()
-
-  # create: (params) ->
-  #   @get('checkin').save (err) =>
-  #     $('#new_checkin').attr('disabled', false)
-
-  #     if err
-  #       throw err unless err instanceof Batman.ErrorsSet
-  #     else
-  #       BatmanRailsCheckin.flashSuccess "Checkin created successfully!"
-  #       @redirect '/checkins'
-
-  # edit: (params) ->
-  #   @set 'checkin', BatmanRailsCheckin.Checkin.find parseInt(params.id, 10), (err) ->
-  #     throw err if err
-  #   @form = @render()
-
-  # update: (params) ->
-  #   @get('checkin').save (err) =>
-  #     $('#edit_checkin').attr('disabled', false)
-
-  #     if err
-  #       throw err unless err instanceof Batman.ErrorsSet
-  #     else
-  #       BatmanRailsCheckin.flashSuccess "Checkin updated successfully!"
-  #       @redirect '/checkins'
-
-  # # not routable, an event
-  # destroy: ->
-  #   @get('checkin').destroy (err) =>
-  #     if err
-  #       throw err unless err instanceof Batman.ErrorsSet
-  #     else
-  #       BatmanRailsCheckin.flashSuccess "Removed successfully!"
-  #       @redirect '/checkins'

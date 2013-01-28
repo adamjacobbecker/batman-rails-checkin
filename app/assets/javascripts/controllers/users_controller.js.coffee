@@ -10,7 +10,6 @@ class BatmanRailsCheckin.UsersController extends BatmanRailsCheckin.BaseControll
 
         @render source: "shared/checkins"
 
-
   show: (params) ->
     @authenticated =>
       @withProject params.projectId, =>
@@ -21,4 +20,3 @@ class BatmanRailsCheckin.UsersController extends BatmanRailsCheckin.BaseControll
           @set 'checkins', user.get('checkins')
 
         @render source: "shared/checkins"
-

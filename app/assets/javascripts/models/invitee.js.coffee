@@ -1,9 +1,9 @@
 class BatmanRailsCheckin.Invitee extends Batman.Model
-  @belongsTo 'project',
-    autoload: false
-
   @resourceName: 'invitee'
   @storageKey: 'invitees'
+
+  @belongsTo 'project',
+    autoload: false
 
   @persist Batman.RailsStorage
 

@@ -48,7 +48,7 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
       cb()
 
     else
-      @unset('isViewingSettings')
+      @unset 'isViewingSettings'
       @unset 'checkins'
       BatmanRailsCheckin.Project.find project_id, (err, project) =>
         @set 'project', project
