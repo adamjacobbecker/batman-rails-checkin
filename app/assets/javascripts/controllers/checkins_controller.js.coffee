@@ -31,14 +31,13 @@ class BatmanRailsCheckin.CheckinsController extends BatmanRailsCheckin.BaseContr
 
         @form = @render()
 
-  create: (params) ->
-    @authenticated =>
-      @get('checkin').save (err) =>
-        $('#new_checkin').attr('disabled', false)
+  create: (node, event, context) ->
+    context.get('checkin').save (err) =>
+      $('#new_checkin').attr('disabled', false)
 
-        if err
-          throw err unless err instanceof Batman.ErrorsSet
-        else
-          BatmanRailsCheckin.flashSuccess "Checkin created successfully!"
-          @get('project').get('users').load ->
-          @redirect "/projects/#{@get('project').get('id')}/users"
+      if err
+        throw err unless err instanceof Batman.ErrorsSet
+      else
+        BatmanRailsCheckin.flashSuccess "Checkin created successfully!"
+        context.get('project').get('users').load ->
+        @redirect "/projects/#{context.get('project').get('id')}/users"

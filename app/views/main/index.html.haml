@@ -46,10 +46,10 @@
 
     #main.container
       .content
-        %p#flashnotice.alert.alert-overlay.alert-success{:data => {"showif" => "window.BatmanRailsCheckin.flash.success.length"}}
+        %p#flashnotice.alert.alert-overlay.alert-success{"style" => "display: none;", :data => {"showif" => "window.BatmanRailsCheckin.flash.success.length"}}
           %a.close{:href => "#", :onclick => "$('#flashnotice').hide(); return false"} ×
           %span{:data => {"bind" => "window.BatmanRailsCheckin.flash.success"}}
-        %p#flashwarning.alert.alert-overlay.alert-error{:data => {"showif" => "window.BatmanRailsCheckin.flash.error.length"}}
+        %p#flashwarning.alert.alert-overlay.alert-error{"style" => "display: none;", :data => {"showif" => "window.BatmanRailsCheckin.flash.error.length"}}
           %a.close{:href => "#", :onclick => "$('#flashwarning').hide(); return false"} ×
           %span{:data => {"bind" => "window.BatmanRailsCheckin.flash.error"}}
         %div{:data => {"yield" => "main"}}
