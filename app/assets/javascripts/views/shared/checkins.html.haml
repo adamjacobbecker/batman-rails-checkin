@@ -15,8 +15,13 @@
       %i.icon-bullhorn
       Post Checkin
 
+    %div.top-pagination{"data-partial" => "checkins/_pagination"}
+
     %p.no-checkins{"data-showif" => "checkins.length | equals 0"} No checkins to display.
     .checkins
       .checkin-wrapper{"data-foreach-checkin" => "checkins.sortedByDescending.created_at", "data-partial" => "checkins/_checkin"}
+      .clearfix &nbsp;
+
+    %div{"data-partial" => "checkins/_pagination"}
 
     .clearfix &nbsp;

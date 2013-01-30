@@ -9,6 +9,7 @@
 #= require batman
 #= require batman.jquery
 #= require batman.rails
+#= require batman.paginator
 
 #= require batman_rails_checkin
 

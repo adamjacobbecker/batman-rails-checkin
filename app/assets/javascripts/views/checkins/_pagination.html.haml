@@ -1,0 +1,5 @@
+.checkin-pagination
+  %a.btn.btn-small{"data-event-click" => "previousPage", "data-addclass-disabled" => "currentPosition | equals 1"} «
+  %a.btn.btn-small{"data-event-click" => "nextPage", "data-addclass-disabled" => "endingPosition | equals totalCount"} »
+
+  %span{"data-bind" => '"Showing " | append currentPosition | append "-" | append endingPosition | append " out of " | append totalCount'}

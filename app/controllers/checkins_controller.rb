@@ -14,7 +14,13 @@ class CheckinsController < BaseActionController
       checkins = checkins.for_date(Date.parse(params[:date]))
     end
 
-    render json: checkins, each_serializer: CheckinListSerializer
+    pagination_info = {
+      total: checkins.count
+    }
+
+    checkins = checkins.limit(params[:limit] || 10).offset(params[:offset] || 0)
+
+    render json: checkins, each_serializer: CheckinListSerializer, meta: pagination_info
   end
 
   def show
