@@ -11,12 +11,16 @@
     %div{"data-partial" => "main/_projectSettings", "data-showif" => "isViewingSettings"}
 
   .span9#row-main-content
+
+    %div.top-pagination{"data-partial" => "checkins/_pagination"}
+
     %a.btn.btn-success.post-checkin-button{"data-route" => "routes.projects[project].checkins.new"}
       %i.icon-bullhorn
       Post Checkin
 
-    %p.no-checkins{"data-showif" => "checkins.length | equals 0"} No checkins to display.
+    %p.no-checkins{"data-showif" => "paginator.results.length | equals 0"} No checkins to display.
     .checkins
-      .checkin-wrapper{"data-foreach-checkin" => "checkins.sortedByDescending.created_at", "data-partial" => "checkins/_checkin"}
+      .checkin-wrapper{"data-foreach-checkin" => "paginator.results.sortedByDescending.created_at", "data-partial" => "checkins/_checkin"}
+      .clearfix &nbsp;
 
-    .clearfix &nbsp;
+    %div{"data-showif" => "paginator.results", "data-partial" => "checkins/_pagination"}
