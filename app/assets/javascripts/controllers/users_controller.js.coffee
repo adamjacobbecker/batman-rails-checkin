@@ -16,7 +16,6 @@ class BatmanRailsCheckin.SimplePaginator extends Batman.Object
     @page = if @params.page then parseInt(@params.page, 10) else 1
     options = Batman.extend({page: @page, per_page: @perPage}, @options)
     @model.load options, (err, results, env) =>
-      console.log env
       set = new Batman.Set
       set.add(record) for record in env.records
       @set 'results', set
