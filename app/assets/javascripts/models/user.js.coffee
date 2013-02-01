@@ -3,7 +3,7 @@ class BatmanRailsCheckin.User extends Batman.Model
   @storageKey: 'users'
 
   @hasMany 'checkins',
-    autoload: true
+    autoload: false
     saveInline: false
 
   @belongsTo 'project',

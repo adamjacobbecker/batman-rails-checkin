@@ -14,7 +14,9 @@ class BatmanRailsCheckin.SimplePaginator extends Batman.Object
   constructor: (args) ->
     super(args)
     @page = if @params.page then parseInt(@params.page, 10) else 1
-    @model.load {page: @page, per_page: @perPage}, (err, results, env) =>
+    options = Batman.extend({page: @page, per_page: @perPage}, @options)
+    @model.load options, (err, results, env) =>
+      console.log env
       set = new Batman.Set
       set.add(record) for record in env.records
       @set 'results', set
@@ -25,8 +27,6 @@ class BatmanRailsCheckin.SimplePaginator extends Batman.Object
 
       if @page > 1
         @set 'previousPageRoute', "#{@params.path}?page=#{@page - 1}"
-
-
 
 
 class BatmanRailsCheckin.UsersController extends BatmanRailsCheckin.BaseController
@@ -49,6 +49,9 @@ class BatmanRailsCheckin.UsersController extends BatmanRailsCheckin.BaseControll
         user = new BatmanRailsCheckin.User {id: params.id, project_id: params.projectId}
         user.load (err, user) =>
           @set 'user', user
-          @set 'checkins', user.get('checkins')
+          @set 'paginator', new BatmanRailsCheckin.SimplePaginator
+            model: user.get('checkins')
+            options: {project_id: params.projectId}
+            params: params
 
         @render source: "shared/checkins"

@@ -7,7 +7,8 @@ class CheckinsController < BaseActionController
     checkins = @project.checkins
 
     if params[:user_id]
-      checkins = checkins.where(user_id: params[:user_id])
+      user_id = params[:user_id].split("_")[0]
+      checkins = checkins.where(user_id: user_id)
     end
 
     if params[:date]
