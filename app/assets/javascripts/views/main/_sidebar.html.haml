@@ -6,7 +6,7 @@
   %li{"data-foreach-sidebaruser" => "project.users", "data-addclass-active" => "user.id | equals sidebaruser.id"}
     %a{"data-route" => "routes.projects[project].users[sidebaruser]"}
       %i.icon-chevron-right.view-icon
-      %img{"data-bind-src" => "sidebaruser.gravatar_url"}
+      %img.gravatar{"data-bind-src" => "sidebaruser.gravatar_url"}
       %span.email
         %span{"data-bind" => "sidebaruser.name"}
         %i{"data-bind-class" => "sidebaruser.status | append \" icon-circle\""}
