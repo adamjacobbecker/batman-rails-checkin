@@ -36,9 +36,9 @@ class BatmanRailsCheckin.Checkin extends Batman.Model
 
     for line, i in lines
       if line.match /Get Done/i then getDoneFound = true
-      if getDoneFound and lines[i + 1] isnt ""
-        return lines[i + 1]
       if lines[i + 1].match "####"
         return ""
+      if getDoneFound and lines[i + 1] isnt ""
+        return lines[i + 1]
 
     return lines[0]
