@@ -1,16 +1,10 @@
 class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseController
   routingKey: 'main'
 
-  login: (params) ->
-    @notAuthenticated =>
-      BatmanRailsCheckin.set 'pageTitle', 'Login'
-      @set('invite', params.invite)
-      @render()
-
   logout: ->
     BatmanRailsCheckin.currentUser.destroy (err) =>
       BatmanRailsCheckin.unset 'currentUser'
-      @redirect '/login'
+      @redirect '/'
 
     @render(false)
 
@@ -19,6 +13,10 @@ class BatmanRailsCheckin.MainController extends BatmanRailsCheckin.BaseControlle
       @unset 'project'
       BatmanRailsCheckin.unset 'currentProjectId'
       @render()
+    , =>
+      BatmanRailsCheckin.unset 'pageTitle'
+      BatmanRailsCheckin.set 'invite', params.invite
+      @render {source: "main/splash"}
 
   settings: (params) ->
     @authenticated =>

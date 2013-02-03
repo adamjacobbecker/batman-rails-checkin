@@ -43,6 +43,11 @@
               %li
                 %a{"data-route" => "routes.logout"}
                   %i.icon-signout
+            %ul.nav.pull-right{data: {hideif: "window.BatmanRailsCheckin.currentUser"}}
+              %li
+                %a{"data-bind-href" => "window.BatmanRailsCheckin.invite | prepend \"/users/oauth?invite=\""}
+                  Login with GitHub&nbsp;
+                  %i.icon-github-alt
 
     #main.container
       .content

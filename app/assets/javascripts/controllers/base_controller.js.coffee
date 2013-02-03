@@ -13,18 +13,17 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     user.url = '/users/current'
     user.load cb
 
-  authenticated: (cb) ->
+  authenticated: (cb, notAuthenticatedCb) ->
     return cb() if BatmanRailsCheckin.currentUser
 
     loadCurrentUser (err, user) =>
       if user and user.get('user_id')?
         BatmanRailsCheckin.set 'currentUser', user
         cb()
+      else if notAuthenticatedCb?
+        notAuthenticatedCb()
       else
-        if @get('params').invite?
-          @redirect "/login?invite=#{@get('params').invite}"
-        else
-          @redirect "/login"
+        @redirect "/?invite=#{@get('params').invite || ''}"
 
     return @render(false)
 

@@ -1,0 +1,27 @@
+.hero-unit
+  %h1 MorningCheckin
+  %p
+    An email-free way to start the day and see what's going on.
+    %a{"data-bind-href" => "window.BatmanRailsCheckin.invite | prepend \"/users/oauth?invite=\""} Login using your GitHub account.
+
+.row.splash-items
+  .span4
+    %h2 Quick and Simple
+    %img.img-polaroid{"src" => "#{asset_path("splash1.png")}"}
+    %p
+      In the morning, check in with what you're doing today, what you completed yesterday, and any
+      flags (blockers) that stand in your way.
+
+  .span4
+    %h2 Don't Miss a Beat
+    %img.img-polaroid{"src" => "#{asset_path("splash2.png")}"}
+    %p
+      With a quick glance, see what your entire team is up to. Miss a day? Scroll through checkins to
+      get caught up with what your teammates have been working on.
+
+  .span4
+    %h2 Seamless Integration
+    %img.img-polaroid{"src" => "#{asset_path("splash3.png")}"}
+    %p
+      Sometimes opening another browser tab is a pain. MorningCheckin can post your team's checkins
+      directly to Campfire so you don't have to interrupt your flow.

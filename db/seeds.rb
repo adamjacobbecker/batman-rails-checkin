@@ -9,8 +9,7 @@
 require 'ffaker'
 
 def checkin_body(project_name)
-"
-#### Get Done
+"#### Get Done
 repair banana stand for #{project_name}
 find company checkbook
 
@@ -21,8 +20,7 @@ rocked karaoke with maeby
 Y: refrigerator keeps falling through the wall
 
 #### Shelf
-get mother into a home
-"
+get mother into a home"
 end
 
 User.create(name: "Tobias Funke", email: "tobias@gobiasindustries.com", login: "analrapist")
