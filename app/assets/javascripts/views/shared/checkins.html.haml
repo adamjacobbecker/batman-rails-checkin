@@ -21,4 +21,4 @@
       .checkin-wrapper{"data-foreach-checkin" => "paginator.results.sortedByDescending.created_at", "data-partial" => "checkins/_checkin"}
       .clearfix &nbsp;
 
-    %div{"data-showif" => "paginator.results", "data-partial" => "checkins/_pagination"}
+    %div{"data-showif" => "paginator.results.length", "data-partial" => "checkins/_pagination"}
