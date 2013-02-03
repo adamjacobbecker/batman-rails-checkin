@@ -8,6 +8,12 @@ class BatmanRailsCheckin.BaseController extends Batman.Controller
     if !BatmanRailsCheckin.get('controllers').get('base').get('newProject')
       BatmanRailsCheckin.get('controllers').get('base').set 'newProject', new BatmanRailsCheckin.Project()
 
+  @afterFilter ->
+    # hack to ensure URL change happens before sending tracking beacon
+    setTimeout ->
+      _gaq.push ['_trackPageview']
+    , 100
+
   loadCurrentUser = (cb) =>
     user = new BatmanRailsCheckin.User()
     user.url = '/users/current'
