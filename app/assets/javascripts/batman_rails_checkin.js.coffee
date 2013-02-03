@@ -24,8 +24,6 @@ window.BatmanRailsCheckin = class BatmanRailsCheckin extends Batman.App
 
     @set 'preferences', BatmanRailsCheckin.Preference.get('first') || BatmanRailsCheckin.Preference.create({})
 
-  # @on 'ready', ->
-
   @flash: Batman()
   @flash.accessor
     get: (key) -> @[key]

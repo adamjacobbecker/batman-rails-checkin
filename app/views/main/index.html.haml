@@ -57,4 +57,8 @@
         %p#flashwarning.alert.alert-overlay.alert-error{"style" => "display: none;", :data => {"showif" => "window.BatmanRailsCheckin.flash.error.length"}}
           %a.close{:href => "#", :onclick => "$('#flashwarning').hide(); return false"} ×
           %span{:data => {"bind" => "window.BatmanRailsCheckin.flash.error"}}
-        %div{:data => {"yield" => "main"}}
+        %div#main-row{:data => {"yield" => "main"}}
+
+      %footer#footer
+        MorningCheckin is an <a href="http://github.com/adamjacobbecker/batman-rails-checkin">open-source project</a>,
+        built by <a href="http://www.twitter.com/adamjacobbecker">@adamjacobbecker</a> with batman.js and rails.
