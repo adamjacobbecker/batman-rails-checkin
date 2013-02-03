@@ -1,5 +1,7 @@
 ## Batman-Rails-Checkin
 
+![screenshot](http://i.imgur.com/ua0Sr2w.png)
+
 ### [View Live Site](http://batmanrailscheckin.herokuapp.com)
 
 Batman-Rails-Checkin is a weekend hack that I embarked on so that I could experiment with the [batman.js](https://github.com/Shopify/batman) javascript framework. It ports our [MorningCheckin](https://github.com/cjoh/morning-checkin) application to a batman.js single-page app, backed by a RESTful API built with the [Rails-API](https://github.com/rails-api/rails-api) project.
@@ -19,8 +21,16 @@ Flags can be coded R, Y, or G for Red, Yellow, and Green respectively. Red flags
 
 Each member of a team submits a daily checkin with these components.
 
-### batman.js lessons learned
+### batman.js lessons learned (in progress)
 These should eventually go into something longer, maybe a blogpost, but here's a few caveats I ran into with batman.js. It's possible some of these are due only to my ignorance, so feedback is much appreciated. Anyway:
+
+##### 1. Using filters to restrict certain routes from authenticated users
+
+##### 2. Implementing pagination
+
+##### 3. Non-conventional model relationships
+
+##### 4. Google Analytics support
 
 
 
