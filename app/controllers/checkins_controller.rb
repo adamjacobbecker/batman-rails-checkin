@@ -1,4 +1,6 @@
 class CheckinsController < BaseActionController
+  before_filter :logged_in
+
   before_filter :project_exists
 
   before_filter :checkin_exists_and_is_mine, only: [:destroy, :update]

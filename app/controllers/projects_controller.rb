@@ -1,4 +1,5 @@
 class ProjectsController < BaseActionController
+  before_filter :logged_in
 
   before_filter :project_exists, only: [:update, :show, :destroy]
 

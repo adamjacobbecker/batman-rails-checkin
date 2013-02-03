@@ -1,4 +1,6 @@
 class InviteesController < BaseActionController
+  before_filter :logged_in
+
   before_filter :project_exists
 
   def index

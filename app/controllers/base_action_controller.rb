@@ -3,6 +3,10 @@ class BaseActionController < ActionController::Base
 
   private
 
+  def logged_in
+    return unauthorized unless signed_in?
+  end
+
   def project_exists
     @project = current_user.projects.find params[:project_id]
   end

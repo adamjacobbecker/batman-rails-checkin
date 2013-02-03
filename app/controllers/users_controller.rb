@@ -1,4 +1,5 @@
 class UsersController < BaseActionController
+  before_filter :logged_in, except: [:create, :oauth]
 
   before_filter :project_exists, only: [:index, :show, :create]
 
