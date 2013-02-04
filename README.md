@@ -2,7 +2,7 @@
 
 ![screenshot](http://i.imgur.com/ua0Sr2w.png)
 
-### [View Live Site](http://batmanrailscheckin.herokuapp.com)
+### [View Live Site](http://www.morningcheckin.com)
 
 Batman-Rails-Checkin is a weekend hack that I embarked on so that I could experiment with the [batman.js](https://github.com/Shopify/batman) javascript framework. It ports our [MorningCheckin](https://github.com/cjoh/morning-checkin) application to a batman.js single-page app, backed by a RESTful API built with the [Rails-API](https://github.com/rails-api/rails-api) project.
 
