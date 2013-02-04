@@ -62,9 +62,5 @@ module BatmanRailsCheckin
     Stylus.use(:nib) if defined?(Stylus)
 
     config.middleware.use ActionDispatch::Cookies
-
-    config.action_mailer.default_url_options = {
-      host: "batmanrailscheckin.herokuapp.com"
-    }
   end
 end
