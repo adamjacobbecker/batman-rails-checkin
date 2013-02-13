@@ -52,7 +52,7 @@ class UsersController < BaseActionController
     return redirect_to client.auth_code.authorize_url(redirect_uri: '', state: params[:invite]) unless params[:code]
 
     invite_code = params[:state]
-    invitee = Invitee.where(invite_code: invite_code)
+    invitee = Invitee.where(invite_code: invite_code).first
 
     token = client.auth_code.get_token(params[:code], redirect_uri: '')
 
