@@ -56,8 +56,8 @@ class UsersController < BaseActionController
 
     token = client.auth_code.get_token(params[:code], redirect_uri: '')
 
-    response = HTTParty.get("https://api.github.com/user?access_token=#{token.token}")
 
+    response = HTTParty.get("https://api.github.com/user?access_token=#{token.token}", headers: {"User-Agent" => "batman-rails-checkin"})
 
     user = User.where(login: response["login"], access_token: token.token).first_or_create!(
       name: response["name"] && !response["name"].blank? ? response["name"] : response["login"],
