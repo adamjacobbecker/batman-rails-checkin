@@ -80,6 +80,8 @@ GEM
       tilt
     hashie (1.2.0)
     hike (1.2.1)
+    hipchat (0.10.0)
+      httparty
     http_parser.rb (0.5.3)
     httparty (0.10.0)
       multi_json (~> 1.0)
@@ -196,6 +198,7 @@ DEPENDENCIES
   haml-rails
   haml_assets
   handlebars_assets
+  hipchat
   httparty
   jquery-rails
   oauth2

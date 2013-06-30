@@ -59,6 +59,13 @@ class CheckinsController < BaseActionController
         room.speak "#{checkin.user.name} checked in!"
         room.paste checkin.body
       end
+
+      if @project.hipchat_token
+        client = HipChat::Client.new(@project.hipchat_token)
+        icon = ([['(yodawg)', '(trump)', '(romney)', '(rebeccablack)', '(kwanzaa)'].sample] * 3).join(' ')
+        client[@project.hipchat_room].send('MorningCheckin', "#{checkin.user.name} checked in! #{icon}", message_format: :text)
+        client[@project.hipchat_room].send('MorningCheckin', checkin.body, message_format: :text)
+      end
     end
 
     render json: checkin

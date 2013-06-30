@@ -15,7 +15,7 @@ class BatmanRailsCheckin.Project extends Batman.Model
   @persist Batman.RailsStorage
 
   # fields
-  @encode "name", "owner_id", "campfire_subdomain", "campfire_token", "campfire_room"
+  @encode "name", "owner_id", "campfire_subdomain", "campfire_token", "campfire_room", "hipchat_token", "hipchat_room"
 
   @accessor 'route', ->
     '/projects/' + @get('id')

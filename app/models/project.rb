@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :campfire_subdomain, :campfire_token, :campfire_room
+  attr_accessible :name, :campfire_subdomain, :campfire_token, :campfire_room, :hipchat_token, :hipchat_room
 
   belongs_to :owner, class_name: "User"
 
